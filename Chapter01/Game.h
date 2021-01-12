@@ -5,7 +5,7 @@
 #ifndef CHAPTER01_GAME_H
 #define CHAPTER01_GAME_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 // Vector2 struct just stores x/y coordinates
 // (for now)

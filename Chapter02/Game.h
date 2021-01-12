@@ -5,7 +5,7 @@
 #ifndef CHAPTER02_GAME_H
 #define CHAPTER02_GAME_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <unordered_map>
 #include <string>
 #include <vector>
