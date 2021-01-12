@@ -11,6 +11,10 @@
 		9223C47D1F009428009A94D7 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9223C4711F009428009A94D7 /* Main.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9709CFDF25ADD55100697744 /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFDD25ADD55100697744 /* SpriteComponent.cpp */; };
+		9709CFE425ADE5DD00697744 /* AnimSpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFE225ADE5DD00697744 /* AnimSpriteComponent.cpp */; };
+		9709CFE925ADED3000697744 /* BGSpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFE725ADED3000697744 /* BGSpriteComponent.cpp */; };
+		9709CFEF25ADF6AD00697744 /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFED25ADF6AC00697744 /* Ship.cpp */; };
 		9795AC2D25AD8AD800ABCBAA /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2725AD8AD800ABCBAA /* Component.cpp */; };
 		9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2925AD8AD800ABCBAA /* Math.cpp */; };
 		9795AC2F25AD8AD800ABCBAA /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2A25AD8AD800ABCBAA /* Actor.cpp */; };
@@ -23,6 +27,14 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9709CFDD25ADD55100697744 /* SpriteComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		9709CFDE25ADD55100697744 /* SpriteComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
+		9709CFE225ADE5DD00697744 /* AnimSpriteComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnimSpriteComponent.cpp; sourceTree = "<group>"; };
+		9709CFE325ADE5DD00697744 /* AnimSpriteComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimSpriteComponent.h; sourceTree = "<group>"; };
+		9709CFE725ADED3000697744 /* BGSpriteComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BGSpriteComponent.cpp; sourceTree = "<group>"; };
+		9709CFE825ADED3000697744 /* BGSpriteComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGSpriteComponent.h; sourceTree = "<group>"; };
+		9709CFED25ADF6AC00697744 /* Ship.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
+		9709CFEE25ADF6AD00697744 /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		9795AC2725AD8AD800ABCBAA /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		9795AC2825AD8AD800ABCBAA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		9795AC2925AD8AD800ABCBAA /* Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Math.cpp; sourceTree = "<group>"; };
@@ -47,6 +59,14 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9709CFED25ADF6AC00697744 /* Ship.cpp */,
+				9709CFEE25ADF6AD00697744 /* Ship.h */,
+				9709CFE725ADED3000697744 /* BGSpriteComponent.cpp */,
+				9709CFE825ADED3000697744 /* BGSpriteComponent.h */,
+				9709CFE225ADE5DD00697744 /* AnimSpriteComponent.cpp */,
+				9709CFE325ADE5DD00697744 /* AnimSpriteComponent.h */,
+				9709CFDD25ADD55100697744 /* SpriteComponent.cpp */,
+				9709CFDE25ADD55100697744 /* SpriteComponent.h */,
 				9795AC2A25AD8AD800ABCBAA /* Actor.cpp */,
 				9795AC2825AD8AD800ABCBAA /* Actor.h */,
 				9795AC2725AD8AD800ABCBAA /* Component.cpp */,
@@ -143,8 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9709CFEF25ADF6AD00697744 /* Ship.cpp in Sources */,
+				9709CFE925ADED3000697744 /* BGSpriteComponent.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				9795AC2D25AD8AD800ABCBAA /* Component.cpp in Sources */,
+				9709CFE425ADE5DD00697744 /* AnimSpriteComponent.cpp in Sources */,
+				9709CFDF25ADD55100697744 /* SpriteComponent.cpp in Sources */,
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */,
 				9795AC2F25AD8AD800ABCBAA /* Actor.cpp in Sources */,
