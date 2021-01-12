@@ -17,6 +17,8 @@
 		9709CFFA25AE321500697744 /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFF825AE321500697744 /* Asteroid.cpp */; };
 		9709CFFE25AE339F00697744 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFFC25AE339F00697744 /* Random.cpp */; };
 		9709D00625AE3CE000697744 /* InputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709D00425AE3CE000697744 /* InputComponent.cpp */; };
+		9709D00B25AE445000697744 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709D00925AE445000697744 /* CircleComponent.cpp */; };
+		9709D00F25AE468400697744 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709D00D25AE468400697744 /* Laser.cpp */; };
 		9795AC2D25AD8AD800ABCBAA /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2725AD8AD800ABCBAA /* Component.cpp */; };
 		9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2925AD8AD800ABCBAA /* Math.cpp */; };
 		9795AC2F25AD8AD800ABCBAA /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2A25AD8AD800ABCBAA /* Actor.cpp */; };
@@ -41,6 +43,10 @@
 		9709CFFD25AE339F00697744 /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		9709D00425AE3CE000697744 /* InputComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputComponent.cpp; sourceTree = "<group>"; };
 		9709D00525AE3CE000697744 /* InputComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputComponent.h; sourceTree = "<group>"; };
+		9709D00925AE445000697744 /* CircleComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircleComponent.cpp; sourceTree = "<group>"; };
+		9709D00A25AE445000697744 /* CircleComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleComponent.h; sourceTree = "<group>"; };
+		9709D00D25AE468400697744 /* Laser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cpp; sourceTree = "<group>"; };
+		9709D00E25AE468400697744 /* Laser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
 		9795AC2725AD8AD800ABCBAA /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		9795AC2825AD8AD800ABCBAA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		9795AC2925AD8AD800ABCBAA /* Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Math.cpp; sourceTree = "<group>"; };
@@ -65,6 +71,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9709D00D25AE468400697744 /* Laser.cpp */,
+				9709D00E25AE468400697744 /* Laser.h */,
+				9709D00925AE445000697744 /* CircleComponent.cpp */,
+				9709D00A25AE445000697744 /* CircleComponent.h */,
 				9709D00425AE3CE000697744 /* InputComponent.cpp */,
 				9709D00525AE3CE000697744 /* InputComponent.h */,
 				9709CFFC25AE339F00697744 /* Random.cpp */,
@@ -175,9 +185,11 @@
 			files = (
 				9709CFFE25AE339F00697744 /* Random.cpp in Sources */,
 				9709CFEF25ADF6AD00697744 /* Ship.cpp in Sources */,
+				9709D00F25AE468400697744 /* Laser.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				9795AC2D25AD8AD800ABCBAA /* Component.cpp in Sources */,
 				9709CFDF25ADD55100697744 /* SpriteComponent.cpp in Sources */,
+				9709D00B25AE445000697744 /* CircleComponent.cpp in Sources */,
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				9709CFFA25AE321500697744 /* Asteroid.cpp in Sources */,
 				9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */,

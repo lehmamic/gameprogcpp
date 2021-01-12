@@ -1,24 +1,25 @@
 //
-//  Ship.hpp
+//  Laser.hpp
 //  Game-mac
 //
 //  Created by Michael Lehmann on 12.01.21.
 //  Copyright © 2021 Michael Lehmann. All rights reserved.
 //
 
-#ifndef Ship_hpp
-#define Ship_hpp
+#ifndef Laser_hpp
+#define Laser_hpp
 
 #include "Actor.h"
-
-class Ship : public Actor {
+class Laser : public Actor
+{
 public:
-    Ship(class Game* game);
+    Laser(class Game* game);
+
     void UpdateActor(float deltaTime) override;
-    void ActorInput(const uint8_t* keyState) override;
-    
 private:
-    float mLaserCooldown;
+    class CircleComponent* mCircle;
+    float mDeathTimer;
 };
 
-#endif /* Ship_hpp */
+
+#endif /* Laser_hpp */
