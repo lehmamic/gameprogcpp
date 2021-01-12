@@ -28,7 +28,7 @@ bool Game::Initialize() {
     // Create an SDL Window
     // See: https://discourse.libsdl.org/t/sdl2-cant-see-the-window/25835
     mWindow = SDL_CreateWindow(
-            "Game Programming in C++ (Chapter 2)", // Window title
+            "Game Programming in C++ (Chapter 3)", // Window title
             100,    // Top left x-coordinate of window
             100,    // Top left y-coordinate of window
             1024,   // Width of window
