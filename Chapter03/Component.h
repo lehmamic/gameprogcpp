@@ -5,6 +5,7 @@
 #ifndef CHAPTER02_COMPONENT_H
 #define CHAPTER02_COMPONENT_H
 
+#include <cstdint>
 
 class Component {
 public:
@@ -17,6 +18,10 @@ public:
 
     // Update this component by delta time
     virtual void Update(float deltaTime);
+    
+    // Process input for this component
+    virtual void ProcessInput(const uint8_t* keyState) { }
+    
     int GetUpdateOrder() const { return mUpdateOrder; }
 protected:
     // Owning actor

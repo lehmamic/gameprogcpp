@@ -16,6 +16,7 @@
 		9709CFF625AE2D4A00697744 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFF425AE2D4A00697744 /* MoveComponent.cpp */; };
 		9709CFFA25AE321500697744 /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFF825AE321500697744 /* Asteroid.cpp */; };
 		9709CFFE25AE339F00697744 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709CFFC25AE339F00697744 /* Random.cpp */; };
+		9709D00625AE3CE000697744 /* InputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9709D00425AE3CE000697744 /* InputComponent.cpp */; };
 		9795AC2D25AD8AD800ABCBAA /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2725AD8AD800ABCBAA /* Component.cpp */; };
 		9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2925AD8AD800ABCBAA /* Math.cpp */; };
 		9795AC2F25AD8AD800ABCBAA /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9795AC2A25AD8AD800ABCBAA /* Actor.cpp */; };
@@ -38,6 +39,8 @@
 		9709CFF925AE321500697744 /* Asteroid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
 		9709CFFC25AE339F00697744 /* Random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		9709CFFD25AE339F00697744 /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		9709D00425AE3CE000697744 /* InputComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputComponent.cpp; sourceTree = "<group>"; };
+		9709D00525AE3CE000697744 /* InputComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputComponent.h; sourceTree = "<group>"; };
 		9795AC2725AD8AD800ABCBAA /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		9795AC2825AD8AD800ABCBAA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		9795AC2925AD8AD800ABCBAA /* Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Math.cpp; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9709D00425AE3CE000697744 /* InputComponent.cpp */,
+				9709D00525AE3CE000697744 /* InputComponent.h */,
 				9709CFFC25AE339F00697744 /* Random.cpp */,
 				9709CFFD25AE339F00697744 /* Random.h */,
 				9709CFF825AE321500697744 /* Asteroid.cpp */,
@@ -178,6 +183,7 @@
 				9795AC2E25AD8AD800ABCBAA /* Math.cpp in Sources */,
 				9709CFF625AE2D4A00697744 /* MoveComponent.cpp in Sources */,
 				9795AC2F25AD8AD800ABCBAA /* Actor.cpp in Sources */,
+				9709D00625AE3CE000697744 /* InputComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
