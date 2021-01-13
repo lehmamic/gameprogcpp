@@ -4,8 +4,13 @@
 
 #include "Game.h"
 #include "SDL/SDL_image.h"
+#include <algorithm>
 #include "Actor.h"
 #include "SpriteComponent.h"
+#include "Grid.h"
+#include "Enemy.h"
+#include "AIComponent.h"
+#include "AIState.h"
 
 Game::Game()
         : mWindow(nullptr)
@@ -181,6 +186,19 @@ void Game::ProcessInput() {
         mIsRunning = false;
     }
     
+    if (keyState[SDL_SCANCODE_B])
+        {
+            mGrid->BuildTower();
+        }
+        
+        // Process mouse
+        int x, y;
+        Uint32 buttons = SDL_GetMouseState(&x, &y);
+        if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
+        {
+            mGrid->ProcessClick(x, y);
+        }
+    
     mUpdatingActors = true;
     for (auto actor : mActors) {
         actor->ProcessInput(keyState);
@@ -236,7 +254,7 @@ void Game::UpdateGame() {
 
 void Game::GenerateOutput()
 {
-    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(mRenderer, 34, 139, 34, 255);
     SDL_RenderClear(mRenderer);
     
     // Draw all sprite components
@@ -250,6 +268,17 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
+    mGrid = new Grid(this);
+
+    // For testing AIComponent
+    //Actor* a = new Actor(this);
+    //AIComponent* aic = new AIComponent(a);
+    //// Register states with AIComponent
+    //aic->RegisterState(new AIPatrol(aic));
+    //aic->RegisterState(new AIDeath(aic));
+    //aic->RegisterState(new AIAttack(aic));
+    //// Start in patrol state
+    //aic->ChangeState("Patrol");
 }
 
 void Game::UnloadData()
@@ -267,4 +296,25 @@ void Game::UnloadData()
         SDL_DestroyTexture(i.second);
     }
     mTextures.clear();
+}
+
+class Enemy* Game::GetNearestEnemy(const Vector2& pos) {
+    Enemy* best = nullptr;
+    
+    if (mEnemies.size() > 0) {
+        best = mEnemies[0];
+        
+        // Save the distance squared of first enemy, and test if others are closer
+        float bestDistSq = (pos - mEnemies[0]->GetPosition()).LengthSq();
+        for (size_t i = 1; i < mEnemies.size(); i++) {
+            float newDistSq = (pos - mEnemies[i]->GetPosition()).LengthSq();
+            
+            if (newDistSq < bestDistSq) {
+                bestDistSq = newDistSq;
+                best = mEnemies[i];
+            }
+        }
+    }
+    
+    return best;
 }

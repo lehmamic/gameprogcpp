@@ -5,10 +5,11 @@
 #ifndef CHAPTER02_GAME_H
 #define CHAPTER02_GAME_H
 
-#include <SDL/SDL.h>
+#include "SDL/SDL.h"
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include "Math.h"
 
 class Game {
 public:
@@ -30,6 +31,11 @@ public:
     void RemoveSprite(class SpriteComponent* sprite);
     
     SDL_Texture* GetTexture(const std::string& fileName);
+    
+    // Game-specific
+    class Grid* GetGrid() { return mGrid; }
+    std::vector<class Enemy*>& GetEnemies() { return mEnemies; }
+    class Enemy* GetNearestEnemy(const Vector2& pos);
     
 
 private:
@@ -62,6 +68,11 @@ private:
 
     // Track if we're updating actors right now
     bool mUpdatingActors;
+    
+    // Game-specific
+    std::vector<class Enemy*> mEnemies;
+    class Grid* mGrid;
+    float mNextEnemy;
 };
 
 
