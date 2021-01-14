@@ -11,27 +11,33 @@
 #include "Math.h"
 
 MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
-    :Component(owner, updateOrder) { }
+    :Component(owner, updateOrder)
+{
+}
 
-void MoveComponent::Update(float deltaTime) {
-    if (!Math::NearZero(mAngularSpeed)) {
-        float rot = mOwner->GetRotation();
-        rot += mAngularSpeed * deltaTime;
+void MoveComponent::Update(float deltaTime)
+{
+    if (!Math::NearZero(mAngularSpeed))
+    {
+        Quaternion rot = mOwner->GetRotation();
+        float angle = mAngularSpeed * deltaTime;
+        
+        // Create quaternion for incremental rotation
+        // (Rotate about up axis)
+        Quaternion inc(Vector3::UnitZ, angle);
+        
+        // Concatenate old and new quaternion
+        rot = Quaternion::Concatenate(rot, inc);
     
         mOwner->SetRotation(rot);
     }
     
-    if (!Math::NearZero(mForwardSpeed)) {
-        Vector2 pos = mOwner->GetPosition();
+    // Updating position based on forward speed stays the same
+    if (!Math::NearZero(mForwardSpeed))
+    {
+        Vector3 pos = mOwner->GetPosition();
         pos += mOwner->GetForward() * mForwardSpeed * deltaTime;
         
-        // Screen wrapping (for asteroids)
-        if (pos.x < -512.0f) { pos.x = 510.0f; }
-        else if (pos.x > 512.0f) { pos.x = -510.0f; }
-        
-        if (pos.y < -384.0f) { pos.y = 382.0f; }
-        else if (pos.y > 384.0f) { pos.y = -382.0f; }
-
         mOwner->SetPosition(pos);
     }
 }
