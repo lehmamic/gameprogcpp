@@ -22,6 +22,9 @@
 		92E3919B1FE87F4800D8C362 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E391931FE87F4700D8C362 /* Laser.cpp */; };
 		92E3919C1FE87F4800D8C362 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E391941FE87F4800D8C362 /* Random.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9738C16225AF9FC500CF420F /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9738C16025AF9FC500CF420F /* VertexArray.cpp */; };
+		9738C16625B03AA800CF420F /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9738C16425B03AA800CF420F /* Shader.cpp */; };
+		9738C16E25B0962200CF420F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9738C16C25B0962200CF420F /* Texture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,13 @@
 		92E391971FE87F4800D8C362 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9738C16025AF9FC500CF420F /* VertexArray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexArray.cpp; sourceTree = "<group>"; };
+		9738C16125AF9FC500CF420F /* VertexArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexArray.h; sourceTree = "<group>"; };
+		9738C16425B03AA800CF420F /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		9738C16525B03AA800CF420F /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		9738C16A25B0871500CF420F /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
+		9738C16C25B0962200CF420F /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		9738C16D25B0962200CF420F /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,13 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9738C16A25B0871500CF420F /* Shaders */,
+				9738C16C25B0962200CF420F /* Texture.cpp */,
+				9738C16D25B0962200CF420F /* Texture.h */,
+				9738C16425B03AA800CF420F /* Shader.cpp */,
+				9738C16525B03AA800CF420F /* Shader.h */,
+				9738C16025AF9FC500CF420F /* VertexArray.cpp */,
+				9738C16125AF9FC500CF420F /* VertexArray.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92E391921FE87F4700D8C362 /* Asteroid.cpp */,
@@ -187,13 +204,16 @@
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
+				9738C16625B03AA800CF420F /* Shader.cpp in Sources */,
 				9223C4801F009428009A94D7 /* SpriteComponent.cpp in Sources */,
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92E3919B1FE87F4800D8C362 /* Laser.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
+				9738C16225AF9FC500CF420F /* VertexArray.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				92E3919C1FE87F4800D8C362 /* Random.cpp in Sources */,
+				9738C16E25B0962200CF420F /* Texture.cpp in Sources */,
 				92E391981FE87F4800D8C362 /* InputComponent.cpp in Sources */,
 				92E3919A1FE87F4800D8C362 /* Asteroid.cpp in Sources */,
 			);

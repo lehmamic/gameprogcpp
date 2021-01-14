@@ -9,8 +9,8 @@
 #ifndef SpriteComponent_hpp
 #define SpriteComponent_hpp
 
-#include <SDL/SDL.h>
 #include "Component.h"
+#include <SDL/SDL.h>
 
 class SpriteComponent : public Component {
 public:
@@ -18,21 +18,21 @@ public:
     SpriteComponent(class Actor* owner, int drawOrder = 100);
     ~SpriteComponent();
     
-    virtual void Draw(SDL_Renderer* renderer);
-    virtual void SetTexture(SDL_Texture* texture);
+    virtual void Draw(class Shader* shader);
+    virtual void SetTexture(class Texture* texture);
     
     int GetDrawOrder() const { return mDrawOrder; }
-    int GetTextHeight() const { return mTextHeight; }
-    int GetTextWidth() const { return mTextWidth; }
+    int GetTexHeight() const { return mTexHeight; }
+    int GetTexWidth() const { return mTexWidth; }
     
 protected:
     // Texture to draw
-    SDL_Texture* mTexture;
+    Texture* mTexture;
     // Draw order used for painter's algorithm
     int mDrawOrder;
     // Width/height of SDL_Texture
-    int mTextWidth;
-    int mTextHeight;
+    int mTexWidth;
+    int mTexHeight;
 };
 
 #endif /* SpriteComponent_hpp */

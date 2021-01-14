@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Math.h"
+#include <cstdint>
 
 class Actor {
 public:
@@ -44,7 +45,10 @@ public:
     float GetRotation() const { return mRotation; }
     void SetRotation(float rotation) { mRotation = rotation; }
     
-    Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
+    void ComputeWorldTransform();
+    const Matrix4& GetWorldTransform() const { return mWorldTransform; }
+    
+    Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), Math::Sin(mRotation)); }
 
     State GetState() const { return mState; }
     void SetState(State state) { mState = state; }
@@ -60,9 +64,11 @@ private:
     State mState;
 
     // Transform
-    Vector2 mPosition; //Center position of actor
+    Matrix4 mWorldTransform;
+    Vector2 mPosition; // Center position of actor
     float mScale; // Uniforms scale of actor (1.0f for 100%)
     float mRotation; // Rotation angle (in radians)
+    bool mRecomputeWorldTransform;
 
     // Components held by this actor
     std::vector<class Component*> mComponents;

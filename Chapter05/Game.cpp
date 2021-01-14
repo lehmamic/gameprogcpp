@@ -3,17 +3,23 @@
 //
 
 #include "Game.h"
-#include "SDL/SDL_image.h"
+#include <GL/glew.h>
+#include "Texture.h"
+#include "VertexArray.h"
+#include "Shader.h"
+#include <algorithm>
 #include "Actor.h"
 #include "SpriteComponent.h"
+#include "Actor.h"
 #include "Ship.h"
 #include "Asteroid.h"
+#include "Random.h"
 
 Game::Game()
         : mWindow(nullptr)
-        ,mRenderer(nullptr)
         ,mTicksCount(0)
         ,mIsRunning(true)
+        ,mSpriteShader(nullptr)
         ,mUpdatingActors(false) { }
 
 bool Game::Initialize() {
@@ -24,40 +30,68 @@ bool Game::Initialize() {
         SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
         return false;
     }
+    
+    // Set OpenGL window's attribute (use prior to creating the window)
+    // Returns 0 if successful, othewise a negative value
+    // use the core OpenGL profile
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    
+    // Specify version 3.3
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    
+    // Request a color buffer with 8-bits per RGBA channel
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+    
+    // Enable double buffering
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    
+    // Force OpenGL to use hardware acceleration
+    SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
     // Create an SDL Window
     // See: https://discourse.libsdl.org/t/sdl2-cant-see-the-window/25835
     mWindow = SDL_CreateWindow(
-            "Game Programming in C++ (Chapter 3)", // Window title
+            "Game Programming in C++ (Chapter 5)", // Window title
             100,    // Top left x-coordinate of window
             100,    // Top left y-coordinate of window
             1024,   // Width of window
             768,    // Height of window
-            0);   // Flags (0 for no flags set)
+            SDL_WINDOW_OPENGL);   // Flags (0 for no flags set)
 
     if (!mWindow)
     {
         SDL_Log("Failed to create window: %s", SDL_GetError());
         return false;
     }
-
-    // Create SDL renderer
-    mRenderer = SDL_CreateRenderer(
-            mWindow,    // Window to create renderer for
-            -1,         // usually -1
-            SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-    if (!mRenderer)
+    
+    // Create an OpenGL context
+    mContext = SDL_GL_CreateContext(mWindow);
+    
+    // Initialize GLEW
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK)
     {
-        SDL_Log("Failed to create renderer: %s", SDL_GetError());
+        SDL_Log("Failed to initialize GLEW.");
         return false;
     }
-
-    if (IMG_Init(IMG_INIT_PNG) == 0)
+    
+    // On some platforms, GLEW will emit a benign error code,
+    // so clear it
+    glGetError();
+    
+    // Make sure we can create/compile shaders
+    if (!LoadShaders())
     {
-        SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
+        SDL_Log("Failed to load shaders.");
         return false;
     }
+    
+    // Create quad for drawing sprites
+    CreateSpriteVerts();
 
     mTicksCount = SDL_GetTicks();
     
@@ -68,8 +102,10 @@ bool Game::Initialize() {
 
 void Game::Shutdown() {
     UnloadData();
-    IMG_Quit();
-    SDL_DestroyRenderer(mRenderer);
+    delete mSpriteVerts;
+    mSpriteShader->Unload();
+    delete mSpriteShader;
+    SDL_GL_DeleteContext(mContext);
     SDL_DestroyWindow(mWindow);
     SDL_Quit();
 }
@@ -132,9 +168,10 @@ void Game::RemoveSprite(SpriteComponent* sprite) {
     mSprites.erase(iter);
 }
 
-SDL_Texture* Game::GetTexture(const std::string& fileName)
+Texture* Game::GetTexture(const std::string& fileName)
 {
-    SDL_Texture* tex = nullptr;
+    Texture* tex = nullptr;
+    
     // Is the texture already in the map?
     auto iter = mTextures.find(fileName);
     if (iter != mTextures.end())
@@ -144,24 +181,18 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
     else
     {
         // Load from file
-        SDL_Surface* surf = IMG_Load(fileName.c_str());
-        if (!surf)
+        tex = new Texture();
+        if (tex->Load(fileName))
         {
-            SDL_Log("Failed to load texture file %s", fileName.c_str());
-            return nullptr;
+            mTextures.emplace(fileName, tex);
         }
-
-        // Create texture from surface
-        tex = SDL_CreateTextureFromSurface(mRenderer, surf);
-        SDL_FreeSurface(surf);
-        if (!tex)
+        else
         {
-            SDL_Log("Failed to convert surface to texture for %s", fileName.c_str());
-            return nullptr;
+            delete tex;
+            tex = nullptr;
         }
-
-        mTextures.emplace(fileName.c_str(), tex);
     }
+    
     return tex;
 }
 
@@ -201,6 +232,7 @@ void Game::ProcessInput() {
     for (auto actor : mActors) {
         actor->ProcessInput(keyState);
     }
+    mUpdatingActors = false;
 }
 
 void Game::UpdateGame() {
@@ -232,48 +264,97 @@ void Game::UpdateGame() {
 
     // Move any pending actors to mActors
     for (auto pending : mPendingActors) {
+        pending->ComputeWorldTransform();
         mActors.emplace_back(pending);
     }
     mPendingActors.clear();
 
     // Add any dead actors to a temp vector
     std::vector<Actor*> deadActors;
-    for (auto actor : mActors) {
-        if (actor->GetState() == Actor::EDead) {
+    for (auto actor : mActors)
+    {
+        if (actor->GetState() == Actor::EDead)
+        {
             deadActors.emplace_back(actor);
         }
     }
 
     // Delete dead actors (which removes them from mActors
-    for(auto actor : deadActors) {
+    for(auto actor : deadActors)
+    {
         delete actor;
     }
 }
 
 void Game::GenerateOutput()
 {
-    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-    SDL_RenderClear(mRenderer);
+    // Set the clear color to gray
+    glClearColor(0.86f, 0.86f, 0.86f, 1.0f);
+    
+    // Clear the color buffer
+    glClear(GL_COLOR_BUFFER_BIT);
     
     // Draw all sprite components
-    for (auto sprite : mSprites)
-    {
-        sprite->Draw(mRenderer);
+    // Enable alpha blending on the color buffer
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    // Set sprite shader and vertex array objects active
+    mSpriteShader->SetActive();
+    mSpriteVerts->SetActive();
+    
+    // Draw all sprites
+    for (auto sprite : mSprites) {
+        sprite->Draw(mSpriteShader);
     }
+    
+    // Swap the buffers, which also displays the scene
+    SDL_GL_SwapWindow(mWindow);
+}
 
-    SDL_RenderPresent(mRenderer);
+bool Game::LoadShaders() {
+    mSpriteShader = new Shader();
+    
+    if (!mSpriteShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag")) {
+        return false;
+    }
+    
+    mSpriteShader->SetActive();
+    
+    // Set the view-projection matrix
+    Matrix4 viewProj = Matrix4::CreateSimpleViewProj(1024.f, 768.f);
+    mSpriteShader->SetMatrixUniform("uViewProj", viewProj);
+    
+    return true;
+}
+
+void Game::CreateSpriteVerts()
+{
+    float vertices[] = {
+        -0.5f,  0.5f, 0.f, 0.f, 0.f, // top left
+         0.5f,  0.5f, 0.f, 1.f, 0.f, // top right
+         0.5f, -0.5f, 0.f, 1.f, 1.f, // bottom right
+        -0.5f, -0.5f, 0.f, 0.f, 1.f  // bottom left
+    };
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
 }
 
 void Game::LoadData()
 {
     // Create player's ship
     mShip = new Ship(this);
-    mShip->SetPosition(Vector2(512.0f, 384.0f));
     mShip->SetRotation(Math::PiOver2);
 
     // Create asteroids
     const int numAsteriods = 20;
-    for (int i = 0; i < numAsteriods; i++) {
+    for (int i = 0; i < numAsteriods; i++)
+    {
         new Asteroid(this);
     }
 }
@@ -290,7 +371,8 @@ void Game::UnloadData()
     // Destroy textures
     for (auto i : mTextures)
     {
-        SDL_DestroyTexture(i.second);
+        i.second->Unload();
+        delete i.second;
     }
     mTextures.clear();
 }
