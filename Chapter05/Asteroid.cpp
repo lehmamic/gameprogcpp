@@ -16,7 +16,9 @@
 #include <vector>
 
 Asteroid::Asteroid(Game* game)
-    :Actor(game) {
+    :Actor(game)
+    ,mCircle(nullptr)
+{
     // Initialize to random position/orientation
     Vector2 randPos = Random::GetVector(
         Vector2::Zero,
