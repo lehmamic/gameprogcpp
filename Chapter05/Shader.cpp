@@ -45,6 +45,12 @@ bool::Shader::Load(const std::string &vertName, const std::string &fragName) {
     return true;
 }
 
+void Shader::Unload() {
+    glDeleteProgram(mShaderProgram);
+    glDeleteShader(mVertexShader);
+    glDeleteShader(mFragShader);
+}
+
 void Shader::SetActive() {
     glUseProgram(mShaderProgram);
 }
@@ -55,18 +61,13 @@ void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix)
     GLuint loc = glGetUniformLocation(mShaderProgram, name);
     
     // Send the matrix data to the uniform
-    glUniformMatrix2fv(
+    glUniformMatrix4fv(
        loc,                         // Uniform ID
        1,                           // Number of matrices (only 1 in this case)
        GL_TRUE,                     // Set to TRUE if using row vectors
        matrix.GetAsFloatPtr());     // Pointer to matrix data
 }
 
-void Shader::Unload() {
-    glDeleteProgram(mShaderProgram);
-    glDeleteShader(mVertexShader);
-    glDeleteShader(mFragShader);
-}
 
 bool Shader::CompileShader(const std::string &fileName, GLenum shaderType, GLuint &outShader) {
     // Open file
