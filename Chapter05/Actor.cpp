@@ -33,7 +33,7 @@ void Actor::Update(float deltaTime)
     if (mState == EActive)
     {
         ComputeWorldTransform();
-        ComputeWorldTransform();
+
         UpdateComponents(deltaTime);
         UpdateActor(deltaTime);
         
