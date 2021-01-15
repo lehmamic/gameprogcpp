@@ -28,6 +28,7 @@ public:
     void RemoveActor(class Actor* actor);
     
     class Renderer* GetRenderer() { return mRenderer; }
+    class AudioSystem* GetAudioSystem() { return mAudioSystem; }
     
     // Game-specific (add/remove asteroid)
 
@@ -45,6 +46,7 @@ private:
     std::vector<class Actor*> mPendingActors;
     
     class Renderer* mRenderer;
+    class AudioSystem* mAudioSystem;
 
     // Number of ticks since start of game
     Uint32 mTicksCount;

@@ -25,6 +25,8 @@
 		92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0D2D1F3BB5270086A0F3 /* VertexArray.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9748809125B22DCA0023842D /* AudioSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748808F25B22DCA0023842D /* AudioSystem.cpp */; };
+		9748809625B22F520023842D /* SoundEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748809425B22F520023842D /* SoundEvent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,10 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9748808F25B22DCA0023842D /* AudioSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AudioSystem.cpp; sourceTree = "<group>"; };
+		9748809025B22DCA0023842D /* AudioSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioSystem.h; sourceTree = "<group>"; };
+		9748809425B22F520023842D /* SoundEvent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEvent.cpp; sourceTree = "<group>"; };
+		9748809525B22F520023842D /* SoundEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundEvent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9748809425B22F520023842D /* SoundEvent.cpp */,
+				9748809525B22F520023842D /* SoundEvent.h */,
+				9748808F25B22DCA0023842D /* AudioSystem.cpp */,
+				9748809025B22DCA0023842D /* AudioSystem.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92CF0D211F3BB5270086A0F3 /* CameraActor.cpp */,
@@ -191,7 +201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"$BUILD_DIR/Debug\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Debug\nfi\n\nif [ -d \"$BUILD_DIR/Release\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Release\nfi";
+			shellScript = "if [ -d \"$BUILD_DIR/Debug\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Debug\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Debug\nfi\n\nif [ -d \"$BUILD_DIR/Release\" ]; then\n    cp \"$SRCROOT\"/../external/GLEW/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/SDL/lib/mac/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/lowlevel/lib/*.dylib $BUILD_DIR/Release\n    cp \"$SRCROOT\"/../external/FMOD/\"FMOD Programmers API\"/api/studio/lib/*.dylib $BUILD_DIR/Release\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -200,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9748809625B22F520023842D /* SoundEvent.cpp in Sources */,
 				92CF0D351F3BB5270086A0F3 /* Renderer.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				92CF0D331F3BB5270086A0F3 /* MeshComponent.cpp in Sources */,
@@ -209,6 +220,7 @@
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
+				9748809125B22DCA0023842D /* AudioSystem.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */,
 				92CF0D311F3BB5270086A0F3 /* CameraActor.cpp in Sources */,

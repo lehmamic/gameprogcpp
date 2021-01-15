@@ -5,6 +5,7 @@
 #include "Game.h"
 #include <algorithm>
 #include "Renderer.h"
+#include "AudioSystem.h"
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
@@ -32,6 +33,17 @@ bool Game::Initialize() {
         SDL_Log("Failed to initialize renderer");
         delete mRenderer;
         mRenderer = nullptr;
+        return false;
+    }
+    
+    // Create the audio system
+    mAudioSystem = new AudioSystem(this);
+    if (!mAudioSystem->Initialize())
+    {
+        SDL_Log("Failed to initialize audio system");
+        mAudioSystem->Shutdown();
+        delete mAudioSystem;
+        mAudioSystem = nullptr;
         return false;
     }
 
@@ -123,6 +135,9 @@ void Game::UpdateGame() {
     {
         delete actor;
     }
+    
+    // Update audio system
+    mAudioSystem->Update(deltaTime);
 }
 
 void Game::GenerateOutput()
@@ -230,6 +245,11 @@ void Game::Shutdown() {
     if (mRenderer)
     {
         mRenderer->Shutdown();
+    }
+    
+    if (mAudioSystem)
+    {
+        mAudioSystem->Shutdown();
     }
     
     SDL_Quit();
