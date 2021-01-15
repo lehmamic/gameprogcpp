@@ -25,6 +25,8 @@
 		9748807625B0E9460023842D /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748807425B0E9460023842D /* Mesh.cpp */; };
 		9748807A25B0EE4B0023842D /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748807825B0EE4B0023842D /* Renderer.cpp */; };
 		9748808025B1A9450023842D /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748807E25B1A9450023842D /* MeshComponent.cpp */; };
+		9748808525B20F090023842D /* CameraActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748808325B20F090023842D /* CameraActor.cpp */; };
+		9748808925B20FE90023842D /* PlaneActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9748808725B20FE90023842D /* PlaneActor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,10 @@
 		9748807925B0EE4B0023842D /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		9748807E25B1A9450023842D /* MeshComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MeshComponent.cpp; sourceTree = "<group>"; };
 		9748807F25B1A9450023842D /* MeshComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshComponent.h; sourceTree = "<group>"; };
+		9748808325B20F090023842D /* CameraActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraActor.cpp; sourceTree = "<group>"; };
+		9748808425B20F090023842D /* CameraActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraActor.h; sourceTree = "<group>"; };
+		9748808725B20FE90023842D /* PlaneActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlaneActor.cpp; sourceTree = "<group>"; };
+		9748808825B20FE90023842D /* PlaneActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneActor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9748808725B20FE90023842D /* PlaneActor.cpp */,
+				9748808825B20FE90023842D /* PlaneActor.h */,
+				9748808325B20F090023842D /* CameraActor.cpp */,
+				9748808425B20F090023842D /* CameraActor.h */,
 				9748807E25B1A9450023842D /* MeshComponent.cpp */,
 				9748807F25B1A9450023842D /* MeshComponent.h */,
 				9748807825B0EE4B0023842D /* Renderer.cpp */,
@@ -202,6 +212,7 @@
 			files = (
 				9748807A25B0EE4B0023842D /* Renderer.cpp in Sources */,
 				92279F471F17101E00D5F4B9 /* VertexArray.cpp in Sources */,
+				9748808925B20FE90023842D /* PlaneActor.cpp in Sources */,
 				9748808025B1A9450023842D /* MeshComponent.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
@@ -211,6 +222,7 @@
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
 				9748807625B0E9460023842D /* Mesh.cpp in Sources */,
+				9748808525B20F090023842D /* CameraActor.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
 				9748807225B0E1240023842D /* Random.cpp in Sources */,

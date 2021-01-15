@@ -54,6 +54,7 @@ private:
     bool mUpdatingActors;
     
     // Game-specific
+    class CameraActor* mCameraActor;
 };
 
 
