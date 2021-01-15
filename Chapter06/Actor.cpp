@@ -9,21 +9,23 @@
 
 Actor::Actor(Game* game)
     :mState(EActive)
-    ,mPosition(Vector2::Zero)
+    ,mPosition(Vector3::Zero)
     ,mScale(1.0f)
-    ,mRotation(0.0f)
+    ,mRotation(Quaternion::Identity)
     ,mGame(game)
     ,mRecomputeWorldTransform(true)
 {
     mGame->AddActor(this);
 }
 
-Actor::~Actor() {
+Actor::~Actor()
+{
     mGame->RemoveActor(this);
     
     // Need to delete components
     // Because ~Component calls RemoveComponent, need a different style loop
-    while (!mComponents.empty()) {
+    while (!mComponents.empty())
+    {
         delete mComponents.back();
     }
 }

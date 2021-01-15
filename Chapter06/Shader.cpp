@@ -17,10 +17,12 @@ Shader::Shader()
     : mShaderProgram(0)
     , mVertexShader(0)
     , mFragShader(0)
-{ }
+{
+}
 
 Shader::~Shader()
-{ }
+{
+}
 
 bool::Shader::Load(const std::string &vertName, const std::string &fragName) {
     // Compile vertex and fragemnt shaders
@@ -68,6 +70,19 @@ void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix)
        matrix.GetAsFloatPtr());     // Pointer to matrix data
 }
 
+void Shader::SetVectorUniform(const char* name, const Vector3& vector)
+{
+    GLuint loc = glGetUniformLocation(mShaderProgram, name);
+    // Send the vector data
+    glUniform3fv(loc, 1, vector.GetAsFloatPtr());
+}
+
+void Shader::SetFloatUniform(const char* name, float value)
+{
+    GLuint loc = glGetUniformLocation(mShaderProgram, name);
+    // Send the float data
+    glUniform1f(loc, value);
+}
 
 bool Shader::CompileShader(const std::string &fileName, GLenum shaderType, GLuint &outShader) {
     // Open file
