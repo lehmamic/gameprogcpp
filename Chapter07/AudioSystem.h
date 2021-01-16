@@ -49,6 +49,12 @@ public:
     // For positional audio
     void SetListener(const Matrix4& viewMatrix);
     
+    // Control buses
+    float GetBusVolume(const std::string& name) const;
+    bool GetBusPaused(const std::string& name) const;
+    void SetBusVolume(const std::string& name, float volume);
+    void SetBusPaused(const std::string& name, bool pause);
+    
 protected:
     friend class SoundEvent;
     FMOD::Studio::EventInstance* GetEventInstance(unsigned int id);
@@ -67,6 +73,9 @@ private:
     
     // Map of event id to EventInstance
     std::unordered_map<unsigned int, FMOD::Studio::EventInstance*> mEventInstances;
+    
+    // Map of buses
+    std::unordered_map<std::string, FMOD::Studio::Bus*> mBuses;
     
     // FMOD studio system
     FMOD::Studio::System* mSystem;

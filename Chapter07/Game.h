@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include "Math.h"
+#include "SoundEvent.h"
 
 class Game {
 public:
@@ -35,6 +36,7 @@ public:
 private:
     // Helper functions for the game loop
     void ProcessInput();
+    void HandleKeyPress(int key);
     void UpdateGame();
     void GenerateOutput();
     void LoadData();
@@ -55,8 +57,10 @@ private:
     // Track if we're updating actors right now
     bool mUpdatingActors;
     
-    // Game-specific
+    // Game-specific code
     class CameraActor* mCameraActor;
+    SoundEvent mMusicEvent;
+    SoundEvent mReverbSnap;
 };
 
 

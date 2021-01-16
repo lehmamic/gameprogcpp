@@ -112,6 +112,27 @@ void AudioSystem::LoadBank(const std::string &name)
                 mEvents.emplace(eventName, e);
             }
         }
+        
+        // Get the number of buses in this bank
+        int numBuses = 0;
+        bank->getBusCount(&numBuses);
+        if (numBuses > 0)
+        {
+            // Get list of buses in this bank
+            std::vector<FMOD::Studio::Bus*> buses(numBuses);
+            bank->getBusList(buses.data(), numBuses, &numBuses);
+            char busName[maxPathLength];
+            for (int i = 0; i < numBuses; i++)
+            {
+                FMOD::Studio::Bus* bus = buses[i];
+                
+                // Get the path of this bus (like bus:/SFX)
+                bus->getPath(busName, maxPathLength, nullptr);
+                
+                // Add to buses map
+                mBuses.emplace(busName, bus);
+            }
+        }
     }
 }
 
@@ -148,6 +169,31 @@ void AudioSystem::UnloadBank(const std::string &name)
             if (eventi != mEvents.end())
             {
                 mEvents.erase(eventi);
+            }
+        }
+    }
+    
+    // Get the number of buses in this bank
+    int numBuses = 0;
+    bank->getBusCount(&numBuses);
+    if (numBuses > 0)
+    {
+        // Get list of buses in this bank
+        std::vector<FMOD::Studio::Bus*> buses(numBuses);
+        bank->getBusList(buses.data(), numBuses, &numBuses);
+        char busName[512];
+        for (int i = 0; i < numBuses; i++)
+        {
+            FMOD::Studio::Bus* bus = buses[i];
+            
+            // Get the path of this bus (like bus:/SFX)
+            bus->getPath(busName, 512, nullptr);
+            
+            // Remove this bus
+            auto busi = mBuses.find(busName);
+            if (busi != mBuses.end())
+            {
+                mBuses.erase(busi);
             }
         }
     }
@@ -263,6 +309,48 @@ void AudioSystem::SetListener(const Matrix4 &viewMatrix)
     
     // Send to FMOD (0 = only one listener)
     mSystem->setListenerAttributes(0, &listener);
+}
+
+float AudioSystem::GetBusVolume(const std::string& name) const
+{
+    float retVal = 0.0f;
+    const auto iter = mBuses.find(name);
+    if (iter != mBuses.end())
+    {
+        iter->second->getVolume(&retVal);
+    }
+    
+    return retVal;
+}
+
+bool AudioSystem::GetBusPaused(const std::string& name) const
+{
+    bool retVal = false;
+    const auto iter = mBuses.find(name);
+    if (iter != mBuses.end())
+    {
+        iter->second->getPaused(&retVal);
+    }
+    
+    return retVal;
+}
+
+void AudioSystem::SetBusVolume(const std::string& name, float volume)
+{
+    auto iter = mBuses.find(name);
+    if (iter != mBuses.end())
+    {
+        iter->second->setVolume(volume);
+    }
+}
+
+void AudioSystem::SetBusPaused(const std::string & name, bool pause)
+{
+    auto iter = mBuses.find(name);
+    if (iter != mBuses.end())
+    {
+        iter->second->setPaused(pause);
+    }
 }
 
 FMOD::Studio::EventInstance* AudioSystem::GetEventInstance(unsigned int id)

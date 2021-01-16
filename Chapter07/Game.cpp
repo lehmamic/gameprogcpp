@@ -11,6 +11,7 @@
 #include "MeshComponent.h"
 #include "CameraActor.h"
 #include "PlaneActor.h"
+#include "AudioComponent.h"
 
 Game::Game()
         :mRenderer(nullptr)
@@ -71,6 +72,17 @@ void Game::ProcessInput() {
             case SDL_QUIT:
                 mIsRunning = false;
                 break;
+                
+            // This fires when a key's initially pressed
+            case SDL_KEYDOWN:
+                if (!event.key.repeat)
+                {
+                    HandleKeyPress(event.key.keysym.sym);
+                }
+                break;
+                
+            default:
+                break;
         }
     }
 
@@ -85,6 +97,73 @@ void Game::ProcessInput() {
         actor->ProcessInput(keyState);
     }
     mUpdatingActors = false;
+}
+
+void Game::HandleKeyPress(int key)
+{
+    switch (key)
+    {
+    case '-':
+    {
+        // Reduce master volume
+        float volume = mAudioSystem->GetBusVolume("bus:/");
+        volume = Math::Max(0.0f, volume - 0.1f);
+        mAudioSystem->SetBusVolume("bus:/", volume);
+        break;
+    }
+    case '=':
+    {
+        // Increase master volume
+        float volume = mAudioSystem->GetBusVolume("bus:/");
+        volume = Math::Min(1.0f, volume + 0.1f);
+        mAudioSystem->SetBusVolume("bus:/", volume);
+        break;
+    }
+    case 'e':
+    {
+        // Play explosion
+        mAudioSystem->PlayEvent("event:/Explosion2D");
+        break;
+    }
+
+    case 'm':
+    {
+        // Toggle music pause state
+        mMusicEvent.SetPaused(!mMusicEvent.GetPaused());
+        break;
+    }
+
+    case 'r':
+    {
+        // Stop or start reverb snapshot
+        if (!mReverbSnap.IsValid())
+        {
+            mReverbSnap = mAudioSystem->PlayEvent("snapshot:/WithReverb");
+        }
+        else
+        {
+            mReverbSnap.Stop();
+        }
+        break;
+    }
+
+    case '1':
+    {
+        // Set default footstep surface
+        mCameraActor->SetFootstepSurface(0.0f);
+        break;
+    }
+
+    case '2':
+    {
+        // Set grass footstep surface
+        mCameraActor->SetFootstepSurface(0.5f);
+        break;
+    }
+
+    default:
+        break;
+    }
 }
 
 void Game::UpdateGame() {
@@ -222,6 +301,18 @@ void Game::LoadData()
     a->SetScale(0.75f);
     sc = new SpriteComponent(a);
     sc->SetTexture(mRenderer->GetTexture("Assets/Radar.png"));
+    
+    // Create spheres with audio components playing different sounds
+    a = new Actor(this);
+    a->SetPosition(Vector3(500.0f, -75.0f, 0.0f));
+    a->SetScale(1.0f);
+    mc = new MeshComponent(a);
+    mc->SetMesh(mRenderer->GetMesh("Assets/Sphere.gpmesh"));
+    AudioComponent* ac = new AudioComponent(a);
+    ac->PlayEvent("event:/FireLoop");
+
+    // Start music
+    mMusicEvent = mAudioSystem->PlayEvent("event:/Music");
 }
 
 void Game::UnloadData()

@@ -11,16 +11,30 @@
 #include "SDL/SDL_scancode.h"
 #include "Renderer.h"
 #include "Game.h"
+#include "AudioComponent.h"
 
 CameraActor::CameraActor(Game* game)
     :Actor(game)
 {
     mMoveComp = new MoveComponent(this);
+    mAudioComp = new AudioComponent(this);
+    mLastFootstep = 0.0f;
+    mFootstep = mAudioComp->PlayEvent("event:/Footstep");
+    mFootstep.SetPaused(true);
 }
 
 void CameraActor::UpdateActor(float deltaTime)
 {
     Actor::UpdateActor(deltaTime);
+    
+    // Play the footstep if we're moving and haven't recently
+    mLastFootstep -= deltaTime;
+    if (!Math::NearZero(mMoveComp->GetForwardSpeed()) && mLastFootstep <= 0.0f)
+    {
+        mFootstep.SetPaused(false);
+        mFootstep.Restart();
+        mLastFootstep = 0.5f;
+    }
 
     // Compute new camera from this actor
     Vector3 cameraPos = GetPosition();
@@ -59,4 +73,12 @@ void CameraActor::ActorInput(const uint8_t* keys)
 
     mMoveComp->SetForwardSpeed(forwardSpeed);
     mMoveComp->SetAngularSpeed(angularSpeed);
+}
+
+void CameraActor::SetFootstepSurface(float value)
+{
+    // Pause here because the way I setup the parameter in FMOD
+    // changing it will play a footstep
+    mFootstep.SetPaused(true);
+    mFootstep.SetParameter("Surface", value);
 }
