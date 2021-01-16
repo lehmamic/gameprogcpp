@@ -12,6 +12,7 @@
 #include "Renderer.h"
 #include "Game.h"
 #include "AudioComponent.h"
+#include "AudioSystem.h"
 
 CameraActor::CameraActor(Game* game)
     :Actor(game)
@@ -43,6 +44,7 @@ void CameraActor::UpdateActor(float deltaTime)
 
     Matrix4 view = Matrix4::CreateLookAt(cameraPos, target, up);
     GetGame()->GetRenderer()->SetViewMatrix(view);
+    GetGame()->GetAudioSystem()->SetListener(view);
 }
 
 void CameraActor::ActorInput(const uint8_t* keys)
