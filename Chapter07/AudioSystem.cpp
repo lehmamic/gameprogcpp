@@ -230,6 +230,41 @@ void AudioSystem::Update(float deltaTime)
     mSystem->update();
 }
 
+namespace
+{
+    FMOD_VECTOR VecToFMOD(const Vector3& in)
+    {
+        // Convert from our coordinates (+x forward, +y right, +z up)
+        // to FMOD (+z forward, +x right, +y up)
+        FMOD_VECTOR v;
+        v.x = in.y;
+        v.y = in.z;
+        v.z = in.x;
+        
+        return v;
+    }
+}
+
+void AudioSystem::SetListener(const Matrix4 &viewMatrix)
+{
+    // Invert the view matrix to get the correct vectors
+    Matrix4 invView = viewMatrix;
+    invView.Invert();
+    
+    FMOD_3D_ATTRIBUTES listener;
+    
+    // Set position, forward, up
+    listener.position = VecToFMOD(invView.GetTranslation());
+    listener.forward = VecToFMOD(invView.GetZAxis());
+    listener.up = VecToFMOD(invView.GetYAxis());
+    
+    // Set velocity to zero (fix if using Doppler effect)
+    listener.velocity = { 0.0f, 0.0f, 0.0f };
+    
+    // Send to FMOD (0 = only one listener)
+    mSystem->setListenerAttributes(0, &listener);
+}
+
 FMOD::Studio::EventInstance* AudioSystem::GetEventInstance(unsigned int id)
 {
     FMOD::Studio::EventInstance* event = nullptr;

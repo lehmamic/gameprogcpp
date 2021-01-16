@@ -38,6 +38,10 @@ public:
     float GetPitch() const;
     float GetParameter(const std::string& name);
     
+    // Positional
+    bool Is3D() const;
+    void Set3DAttributes(const Matrix4& worldTrans);
+    
 protected:
     // Make this constructor protected and AudioSystem a friend
     // so that only AudioSystem can access this constructor

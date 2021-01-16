@@ -36,7 +36,6 @@ public:
     
     bool Initialize();
     void Shutdown();
-    void Update(float deltaTime);
     
     // Load/unload banks
     void LoadBank(const std::string& name);
@@ -44,6 +43,11 @@ public:
     void UnloadAllBanks();
     
     SoundEvent PlayEvent(const std::string& name);
+    
+    void Update(float deltaTime);
+    
+    // For positional audio
+    void SetListener(const Matrix4& viewMatrix);
     
 protected:
     friend class SoundEvent;
