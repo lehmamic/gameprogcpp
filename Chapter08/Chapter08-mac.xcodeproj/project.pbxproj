@@ -25,6 +25,7 @@
 		92CF0D791F3BBF140086A0F3 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0D771F3BBF140086A0F3 /* VertexArray.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		97783FB525B3939F00DC1E07 /* InputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97783FB325B3939F00DC1E07 /* InputSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		97783FB325B3939F00DC1E07 /* InputSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputSystem.cpp; sourceTree = "<group>"; };
+		97783FB425B3939F00DC1E07 /* InputSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputSystem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97783FB325B3939F00DC1E07 /* InputSystem.cpp */,
+				97783FB425B3939F00DC1E07 /* InputSystem.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				9216C5371FCFFDA200F72B29 /* Asteroid.cpp */,
@@ -202,6 +207,7 @@
 			files = (
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
+				97783FB525B3939F00DC1E07 /* InputSystem.cpp in Sources */,
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				9216C5451FCFFDA400F72B29 /* Laser.cpp in Sources */,
 				9216C5481FCFFDA400F72B29 /* InputComponent.cpp in Sources */,

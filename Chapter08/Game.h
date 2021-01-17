@@ -64,6 +64,8 @@ private:
     // Any pending actors
     std::vector<class Actor*> mPendingActors;
     
+    class InputSystem* mInputSystem;
+    
     // All the sprite components drawn
     std::vector<class SpriteComponent*> mSprites;
     
