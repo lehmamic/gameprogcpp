@@ -19,12 +19,14 @@ Actor::Actor(Game* game)
     mGame->AddActor(this);
 }
 
-Actor::~Actor() {
+Actor::~Actor()
+{
     mGame->RemoveActor(this);
     
     // Need to delete components
     // Because ~Component calls RemoveComponent, need a different style loop
-    while (!mComponents.empty()) {
+    while (!mComponents.empty())
+    {
         delete mComponents.back();
     }
 }
@@ -61,10 +63,10 @@ void Actor::ProcessInput(const struct InputState& state)
         // First process input for components
         for (auto comp : mComponents)
         {
-            comp->ProcessInput(keyState);
+            comp->ProcessInput(state);
         }
 
-        ActorInput(keyState);
+        ActorInput(state);
     }
 }
 

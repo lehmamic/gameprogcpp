@@ -11,6 +11,7 @@
 #include "Laser.h"
 #include "SpriteComponent.h"
 #include "InputComponent.h"
+#include "InputSystem.h"
 #include "Math.h"
 #include <vector>
 
@@ -36,9 +37,10 @@ void Ship::UpdateActor(float deltaTime) {
     mLaserCooldown -= deltaTime;
 }
 
-void Ship::ActorInput(const uint8_t* keyState)
+void Ship::ActorInput(const InputState& state)
 {
-    if (keyState[SDL_SCANCODE_SPACE] && mLaserCooldown <= 0.0f)
+    // NOTE: The original example uses the controller
+    if (state.Keyboard.GetKeyValue(SDL_Scancode(SDL_SCANCODE_SPACE)) && mLaserCooldown <= 0.0f)
     {
         // Create a laser and set its position/rotation to mine
         Laser* laser = new Laser(GetGame());

@@ -73,6 +73,37 @@ ButtonState MouseState::GetButtonState(int button) const
     }
 }
 
+bool ControllerState::GetButtonValue(SDL_GameControllerButton button) const
+{
+    return mCurrButtons[button] == 1;
+}
+
+ButtonState ControllerState::GetButtonState(SDL_GameControllerButton button) const
+{
+    if (mPrevButtons[button] == 0)
+    {
+        if (mCurrButtons[button] == 0)
+        {
+            return ENone;
+        }
+        else
+        {
+            return EPressed;
+        }
+    }
+    else // Prev state must be 1
+    {
+        if (mCurrButtons[button] == 0)
+        {
+            return EReleased;
+        }
+        else
+        {
+            return EHeld;
+        }
+    }
+}
+
 bool InputSystem::Initialize()
 {
     // -------- Keyboard --------
@@ -205,7 +236,7 @@ float InputSystem::Filter1D(int input)
     // A value > max value is interpreted as 100%
     const int maxValue = 30000;
     
-    float retVal = 0.0f
+    float retVal = 0.0f;
     
     // Take absolute value of input
     int absValue = input > 0 ? input : -input;

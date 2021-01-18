@@ -101,10 +101,10 @@ bool Game::Initialize() {
     
     // Create quad for drawing sprites
     CreateSpriteVerts();
-
-    mTicksCount = SDL_GetTicks();
     
     LoadData();
+
+    mTicksCount = SDL_GetTicks();
 
     return true;
 }

@@ -7,6 +7,8 @@
 //
 
 #include "InputComponent.h"
+#include "Actor.h"
+#include "InputSystem.h"
 
 InputComponent::InputComponent(class Actor *owner)
     : MoveComponent(owner),
@@ -15,15 +17,17 @@ InputComponent::InputComponent(class Actor *owner)
     mClockwiseKey(0),
     mCounterClockwiseKey(0) {}
 
-void InputComponent::ProcessInput(const uint8_t *keyState) {
+void InputComponent::ProcessInput(const InputState& state) {
     // Calculate forward speed for MoveComponent
     float forwardSpeed = 0.0f;
     
-    if (keyState[mForwardKey]) {
+    if (state.Keyboard.GetKeyValue(SDL_Scancode(mForwardKey)))
+    {
         forwardSpeed += mMaxForwardSpeed;
     }
     
-    if (keyState[mBackKey]) {
+    if (state.Keyboard.GetKeyValue(SDL_Scancode(mBackKey)))
+    {
         forwardSpeed -= mMaxForwardSpeed;
     }
     
@@ -32,11 +36,11 @@ void InputComponent::ProcessInput(const uint8_t *keyState) {
     // Calculate angular speed for MoveComponent
     float angularSpeed = 0.0f;
     
-    if (keyState[mClockwiseKey]) {
+    if (state.Keyboard.GetKeyValue(SDL_Scancode(mClockwiseKey))) {
         angularSpeed += mMaxAngularSpeed;
     }
     
-    if (keyState[mCounterClockwiseKey]) {
+    if (state.Keyboard.GetKeyValue(SDL_Scancode(mCounterClockwiseKey))) {
         angularSpeed -= mMaxAngularSpeed;
     }
     
