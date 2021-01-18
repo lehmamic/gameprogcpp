@@ -22,6 +22,7 @@ public:
     float GetForwardSpeed() const { return mForwardSpeed; }
     void SetAngularSpeed(float speed) { mAngularSpeed = speed; }
     void SetForwardSpeed(float speed) { mForwardSpeed = speed; }
+    void SetStrafeSpeed(float speed) { mStrafeSpeed = speed; }
     
 private:
     // Controls rotation (radians/second)
@@ -29,6 +30,9 @@ private:
     
     // Controls forward movement
     float mForwardSpeed;
+    
+    // Controls strafe movement
+    float mStrafeSpeed;
     
 };
 
