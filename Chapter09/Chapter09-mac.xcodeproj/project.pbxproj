@@ -36,6 +36,8 @@
 		97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983B625B61C2F003BF886 /* FollowCamera.cpp */; };
 		97D983BC25B77E56003BF886 /* OrbitActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983BA25B77E55003BF886 /* OrbitActor.cpp */; };
 		97D983C125B77E72003BF886 /* OrbitCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983BF25B77E72003BF886 /* OrbitCamera.cpp */; };
+		97D983C825B783B4003BF886 /* SplineCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983C625B783B4003BF886 /* SplineCamera.cpp */; };
+		97D983CC25B783C1003BF886 /* SplineActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983CA25B783C1003BF886 /* SplineActor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,10 @@
 		97D983BB25B77E56003BF886 /* OrbitActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrbitActor.h; sourceTree = "<group>"; };
 		97D983BF25B77E72003BF886 /* OrbitCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrbitCamera.cpp; sourceTree = "<group>"; };
 		97D983C025B77E72003BF886 /* OrbitCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrbitCamera.h; sourceTree = "<group>"; };
+		97D983C625B783B4003BF886 /* SplineCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SplineCamera.cpp; sourceTree = "<group>"; };
+		97D983C725B783B4003BF886 /* SplineCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplineCamera.h; sourceTree = "<group>"; };
+		97D983CA25B783C1003BF886 /* SplineActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SplineActor.cpp; sourceTree = "<group>"; };
+		97D983CB25B783C1003BF886 /* SplineActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplineActor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97D983CA25B783C1003BF886 /* SplineActor.cpp */,
+				97D983CB25B783C1003BF886 /* SplineActor.h */,
+				97D983C625B783B4003BF886 /* SplineCamera.cpp */,
+				97D983C725B783B4003BF886 /* SplineCamera.h */,
 				97D983BF25B77E72003BF886 /* OrbitCamera.cpp */,
 				97D983C025B77E72003BF886 /* OrbitCamera.h */,
 				97D983BA25B77E55003BF886 /* OrbitActor.cpp */,
@@ -268,6 +278,7 @@
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
 				97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */,
 				97D983BC25B77E56003BF886 /* OrbitActor.cpp in Sources */,
+				97D983C825B783B4003BF886 /* SplineCamera.cpp in Sources */,
 				97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */,
 				97D983A025B5E5B8003BF886 /* CameraActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
@@ -280,6 +291,7 @@
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				97D983B325B61A0B003BF886 /* FollowActor.cpp in Sources */,
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
+				97D983CC25B783C1003BF886 /* SplineActor.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
 			);
