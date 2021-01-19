@@ -34,6 +34,8 @@
 		97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983AC25B5F336003BF886 /* FPSCamera.cpp */; };
 		97D983B325B61A0B003BF886 /* FollowActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983B125B61A0B003BF886 /* FollowActor.cpp */; };
 		97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983B625B61C2F003BF886 /* FollowCamera.cpp */; };
+		97D983BC25B77E56003BF886 /* OrbitActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983BA25B77E55003BF886 /* OrbitActor.cpp */; };
+		97D983C125B77E72003BF886 /* OrbitCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983BF25B77E72003BF886 /* OrbitCamera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,10 @@
 		97D983B225B61A0B003BF886 /* FollowActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowActor.h; sourceTree = "<group>"; };
 		97D983B625B61C2F003BF886 /* FollowCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FollowCamera.cpp; sourceTree = "<group>"; };
 		97D983B725B61C2F003BF886 /* FollowCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowCamera.h; sourceTree = "<group>"; };
+		97D983BA25B77E55003BF886 /* OrbitActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrbitActor.cpp; sourceTree = "<group>"; };
+		97D983BB25B77E56003BF886 /* OrbitActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrbitActor.h; sourceTree = "<group>"; };
+		97D983BF25B77E72003BF886 /* OrbitCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrbitCamera.cpp; sourceTree = "<group>"; };
+		97D983C025B77E72003BF886 /* OrbitCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrbitCamera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97D983BF25B77E72003BF886 /* OrbitCamera.cpp */,
+				97D983C025B77E72003BF886 /* OrbitCamera.h */,
+				97D983BA25B77E55003BF886 /* OrbitActor.cpp */,
+				97D983BB25B77E56003BF886 /* OrbitActor.h */,
 				97D983B625B61C2F003BF886 /* FollowCamera.cpp */,
 				97D983B725B61C2F003BF886 /* FollowCamera.h */,
 				97D983B125B61A0B003BF886 /* FollowActor.cpp */,
@@ -246,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92CF0D351F3BB5270086A0F3 /* Renderer.cpp in Sources */,
+				97D983C125B77E72003BF886 /* OrbitCamera.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
 				92CF0D331F3BB5270086A0F3 /* MeshComponent.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
@@ -256,6 +267,7 @@
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
 				97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */,
+				97D983BC25B77E56003BF886 /* OrbitActor.cpp in Sources */,
 				97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */,
 				97D983A025B5E5B8003BF886 /* CameraActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
