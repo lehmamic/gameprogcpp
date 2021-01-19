@@ -123,7 +123,7 @@ void FPSActor::ActorInput(const uint8_t* keys)
     {
         // Convert to ~[-1.0, 1.0]
         pitchSpeed = static_cast<float>(y) / maxMouseSpeed;
-       pitchSpeed *= maxPitchSpeed;
+        pitchSpeed *= maxPitchSpeed;
     }
     
     mCameraComp->SetPitchSpeed(pitchSpeed);
@@ -139,5 +139,5 @@ void FPSActor::SetFootstepSurface(float value)
 
 void FPSActor::SetVisible(bool visible)
 {
-    // mMeshComp->SetVisible(visible);
+    mMeshComp->SetVisible(visible);
 }

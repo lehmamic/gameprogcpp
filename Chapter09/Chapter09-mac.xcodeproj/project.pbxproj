@@ -32,6 +32,8 @@
 		97D983A525B5E822003BF886 /* FPSActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983A325B5E822003BF886 /* FPSActor.cpp */; };
 		97D983A925B5F1C6003BF886 /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983A725B5F1C6003BF886 /* CameraComponent.cpp */; };
 		97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983AC25B5F336003BF886 /* FPSCamera.cpp */; };
+		97D983B325B61A0B003BF886 /* FollowActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983B125B61A0B003BF886 /* FollowActor.cpp */; };
+		97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983B625B61C2F003BF886 /* FollowCamera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,10 @@
 		97D983A825B5F1C6003BF886 /* CameraComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
 		97D983AC25B5F336003BF886 /* FPSCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FPSCamera.cpp; sourceTree = "<group>"; };
 		97D983AD25B5F336003BF886 /* FPSCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPSCamera.h; sourceTree = "<group>"; };
+		97D983B125B61A0B003BF886 /* FollowActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FollowActor.cpp; sourceTree = "<group>"; };
+		97D983B225B61A0B003BF886 /* FollowActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowActor.h; sourceTree = "<group>"; };
+		97D983B625B61C2F003BF886 /* FollowCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FollowCamera.cpp; sourceTree = "<group>"; };
+		97D983B725B61C2F003BF886 /* FollowCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowCamera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,10 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97D983B625B61C2F003BF886 /* FollowCamera.cpp */,
+				97D983B725B61C2F003BF886 /* FollowCamera.h */,
+				97D983B125B61A0B003BF886 /* FollowActor.cpp */,
+				97D983B225B61A0B003BF886 /* FollowActor.h */,
 				97D983AC25B5F336003BF886 /* FPSCamera.cpp */,
 				97D983AD25B5F336003BF886 /* FPSCamera.h */,
 				97D983A725B5F1C6003BF886 /* CameraComponent.cpp */,
@@ -246,6 +256,7 @@
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
 				97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */,
+				97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */,
 				97D983A025B5E5B8003BF886 /* CameraActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
@@ -255,6 +266,7 @@
 				97D983A925B5F1C6003BF886 /* CameraComponent.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
+				97D983B325B61A0B003BF886 /* FollowActor.cpp in Sources */,
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,

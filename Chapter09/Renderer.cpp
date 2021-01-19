@@ -155,7 +155,10 @@ void Renderer::Draw()
     // Draw all meshs
     for (auto mesh : mMeshComps)
     {
-        mesh->Draw(mMeshShader);
+        if (mesh->GetVisible())
+        {
+            mesh->Draw(mMeshShader);
+        }
     }
     
     // Draw all sprite components
