@@ -56,7 +56,7 @@ void SplineCamera::Update(float deltaTime)
     // Update t value
     if(!mPaused)
     {
-        mT += mSpeed + deltaTime;
+        mT += mSpeed * deltaTime;
         
         // Advance to the next control point if needed
         // This assumes speed isn't so fast you jump past
