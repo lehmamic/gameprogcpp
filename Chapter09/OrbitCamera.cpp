@@ -28,6 +28,7 @@ void OrbitCamera::Update(float deltaTime)
     
     // Transform offset and up by yaw
     mOffset = Vector3::Transform(mOffset, yaw);
+    mUp = Vector3::Transform(mUp, yaw);
     
     // Compute camera forward/right from these vectors
     // Forward owner.position - (owner.position + offset) = -offset

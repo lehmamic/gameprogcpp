@@ -52,16 +52,13 @@ void FPSActor::UpdateActor(float deltaTime)
     modelPos += GetForward() * modelOffset.x;
     modelPos += GetRight() * modelOffset.y;
     modelPos.z += modelOffset.z;
-    
     mFPSModel->SetPosition(modelPos);
     
     // Initialize rotation to actor rotation
     Quaternion q = GetRotation();
     
     // Rotate by pitch from camera
-    q = Quaternion::Concatenate(
-                                q,
-                                Quaternion(GetRight(), mCameraComp->GetPitch()));
+    q = Quaternion::Concatenate(q, Quaternion(GetRight(), mCameraComp->GetPitch()));
 
     mFPSModel->SetRotation(q);
 }

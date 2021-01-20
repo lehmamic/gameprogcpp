@@ -175,7 +175,10 @@ void Renderer::Draw()
     // Draw all sprites
     for (auto sprite : mSprites)
     {
-        sprite->Draw(mSpriteShader);
+        if (sprite->GetVisible())
+        {
+            sprite->Draw(mSpriteShader);
+        }
     }
     
     // Swap the buffers, which also displays the scene

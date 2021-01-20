@@ -58,9 +58,16 @@ private:
     bool mUpdatingActors;
     
     // Game-specific code
-    class CameraActor* mCameraActor;
+    class FPSActor* mFPSActor;
+    class FollowActor* mFollowActor;
+    class OrbitActor* mOrbitActor;
+    class SplineActor* mSplineActor;
+    class Actor* mStartSphere;
+    class Actor* mEndSphere;
+    class SpriteComponent* mCrosshair;
     SoundEvent mMusicEvent;
     SoundEvent mReverbSnap;
+    void ChangeCamera(int mode);
 };
 
 

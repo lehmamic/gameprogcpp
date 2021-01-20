@@ -25,14 +25,21 @@ public:
     int GetTexHeight() const { return mTexHeight; }
     int GetTexWidth() const { return mTexWidth; }
     
+    void SetVisible(bool visible) { mVisible = visible; }
+    bool GetVisible() const { return mVisible; }
+    
 protected:
     // Texture to draw
     Texture* mTexture;
+    
     // Draw order used for painter's algorithm
     int mDrawOrder;
+    
     // Width/height of SDL_Texture
     int mTexWidth;
     int mTexHeight;
+    
+    bool mVisible;
 };
 
 #endif /* SpriteComponent_hpp */

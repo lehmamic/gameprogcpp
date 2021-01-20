@@ -27,8 +27,6 @@
 		92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0D2D1F3BB5270086A0F3 /* VertexArray.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
-		97D983A025B5E5B8003BF886 /* CameraActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D9839D25B5E5B8003BF886 /* CameraActor.cpp */; };
-		97D983A125B5E5B8003BF886 /* InputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D9839E25B5E5B8003BF886 /* InputComponent.cpp */; };
 		97D983A525B5E822003BF886 /* FPSActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983A325B5E822003BF886 /* FPSActor.cpp */; };
 		97D983A925B5F1C6003BF886 /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983A725B5F1C6003BF886 /* CameraComponent.cpp */; };
 		97D983AE25B5F336003BF886 /* FPSCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983AC25B5F336003BF886 /* FPSCamera.cpp */; };
@@ -80,10 +78,6 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		97D9839C25B5E5B8003BF886 /* CameraActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraActor.h; sourceTree = "<group>"; };
-		97D9839D25B5E5B8003BF886 /* CameraActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraActor.cpp; sourceTree = "<group>"; };
-		97D9839E25B5E5B8003BF886 /* InputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputComponent.cpp; sourceTree = "<group>"; };
-		97D9839F25B5E5B8003BF886 /* InputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputComponent.h; sourceTree = "<group>"; };
 		97D983A325B5E822003BF886 /* FPSActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FPSActor.cpp; sourceTree = "<group>"; };
 		97D983A425B5E822003BF886 /* FPSActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPSActor.h; sourceTree = "<group>"; };
 		97D983A725B5F1C6003BF886 /* CameraComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
@@ -138,10 +132,6 @@
 				97D983A825B5F1C6003BF886 /* CameraComponent.h */,
 				97D983A325B5E822003BF886 /* FPSActor.cpp */,
 				97D983A425B5E822003BF886 /* FPSActor.h */,
-				97D9839D25B5E5B8003BF886 /* CameraActor.cpp */,
-				97D9839C25B5E5B8003BF886 /* CameraActor.h */,
-				97D9839E25B5E5B8003BF886 /* InputComponent.cpp */,
-				97D9839F25B5E5B8003BF886 /* InputComponent.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92CF0D1D1F3BB5270086A0F3 /* AudioComponent.cpp */,
@@ -280,12 +270,10 @@
 				97D983BC25B77E56003BF886 /* OrbitActor.cpp in Sources */,
 				97D983C825B783B4003BF886 /* SplineCamera.cpp in Sources */,
 				97D983B825B61C2F003BF886 /* FollowCamera.cpp in Sources */,
-				97D983A025B5E5B8003BF886 /* CameraActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */,
 				97D983A525B5E822003BF886 /* FPSActor.cpp in Sources */,
-				97D983A125B5E5B8003BF886 /* InputComponent.cpp in Sources */,
 				97D983A925B5F1C6003BF886 /* CameraComponent.cpp in Sources */,
 				9223C4951F0CA766009A94D7 /* CircleComponent.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
