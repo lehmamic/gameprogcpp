@@ -39,6 +39,7 @@ bool PhysWorld::SegmentCast(const LineSegment& l, CollisionInfo& outColl)
             {
                 outColl.mPoint = l.PointOnSegment(t);
                 outColl.mBox = box;
+                outColl.mNormal = norm;
                 outColl.mActor = box->GetOwner();
             }
             
