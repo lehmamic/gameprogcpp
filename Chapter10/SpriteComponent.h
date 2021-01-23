@@ -30,7 +30,7 @@ public:
     
 protected:
     // Texture to draw
-    Texture* mTexture;
+    class Texture* mTexture;
     
     // Draw order used for painter's algorithm
     int mDrawOrder;

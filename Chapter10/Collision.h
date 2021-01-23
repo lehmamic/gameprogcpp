@@ -74,7 +74,7 @@ struct OBB
 {
     Vector3 mCenter;
     Quaternion mRotation;
-    Vector3 mExtends;
+    Vector3 mExtents;
 };
 
 struct Capsule

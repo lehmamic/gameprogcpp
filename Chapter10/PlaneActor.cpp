@@ -22,8 +22,8 @@ PlaneActor::PlaneActor(Game* game)
     mc->SetMesh(mesh);
     
     // Add collision box
-    BoxComponent* bc = new BoxComponent(this);
-    bc->SetObjectBox(mesh->GetBox());
+    mBox = new BoxComponent(this);
+    mBox->SetObjectBox(mesh->GetBox());
     
     game->AddPlane(this);
 }

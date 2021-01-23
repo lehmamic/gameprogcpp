@@ -29,13 +29,12 @@
 		92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0D2D1F3BB5270086A0F3 /* VertexArray.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
-		97D983E425B8799A003BF886 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983D925B8799A003BF886 /* Random.cpp */; };
-		97D983EC25B885C0003BF886 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983EA25B885C0003BF886 /* Collision.cpp */; };
-		97D983F125BABF63003BF886 /* BoxComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983EF25BABF63003BF886 /* BoxComponent.cpp */; };
-		97D983F625BAE10B003BF886 /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983F425BAE10B003BF886 /* PhysWorld.cpp */; };
-		97D983FA25BC4E9D003BF886 /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983F825BC4E9D003BF886 /* BallActor.cpp */; };
-		97D983FF25BC4EAB003BF886 /* BallMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983FD25BC4EAB003BF886 /* BallMove.cpp */; };
-		97D9840425BCABE4003BF886 /* TargetActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D9840225BCABE4003BF886 /* TargetActor.cpp */; };
+		92F20C9F1FEB899300FB489A /* TargetActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C951FEB899100FB489A /* TargetActor.cpp */; };
+		92F20CA01FEB899300FB489A /* BallMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C971FEB899200FB489A /* BallMove.cpp */; };
+		92F20CA11FEB899300FB489A /* BoxComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9B1FEB899200FB489A /* BoxComponent.cpp */; };
+		92F20CA21FEB899300FB489A /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9D1FEB899300FB489A /* Collision.cpp */; };
+		92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9E1FEB899300FB489A /* BallActor.cpp */; };
+		92F20CA61FEB89CE00FB489A /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,20 +81,18 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		97D983D825B8799A003BF886 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
-		97D983D925B8799A003BF886 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
-		97D983EA25B885C0003BF886 /* Collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
-		97D983EB25B885C0003BF886 /* Collision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
-		97D983EF25BABF63003BF886 /* BoxComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoxComponent.cpp; sourceTree = "<group>"; };
-		97D983F025BABF63003BF886 /* BoxComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxComponent.h; sourceTree = "<group>"; };
-		97D983F425BAE10B003BF886 /* PhysWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
-		97D983F525BAE10B003BF886 /* PhysWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
-		97D983F825BC4E9D003BF886 /* BallActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
-		97D983F925BC4E9D003BF886 /* BallActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallActor.h; sourceTree = "<group>"; };
-		97D983FD25BC4EAB003BF886 /* BallMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BallMove.cpp; sourceTree = "<group>"; };
-		97D983FE25BC4EAB003BF886 /* BallMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallMove.h; sourceTree = "<group>"; };
-		97D9840225BCABE4003BF886 /* TargetActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TargetActor.cpp; sourceTree = "<group>"; };
-		97D9840325BCABE4003BF886 /* TargetActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetActor.h; sourceTree = "<group>"; };
+		92F20C951FEB899100FB489A /* TargetActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TargetActor.cpp; sourceTree = "<group>"; };
+		92F20C961FEB899200FB489A /* BoxComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxComponent.h; sourceTree = "<group>"; };
+		92F20C971FEB899200FB489A /* BallMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallMove.cpp; sourceTree = "<group>"; };
+		92F20C981FEB899200FB489A /* TargetActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetActor.h; sourceTree = "<group>"; };
+		92F20C991FEB899200FB489A /* BallMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallMove.h; sourceTree = "<group>"; };
+		92F20C9A1FEB899200FB489A /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
+		92F20C9B1FEB899200FB489A /* BoxComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoxComponent.cpp; sourceTree = "<group>"; };
+		92F20C9C1FEB899200FB489A /* BallActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallActor.h; sourceTree = "<group>"; };
+		92F20C9D1FEB899300FB489A /* Collision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
+		92F20C9E1FEB899300FB489A /* BallActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
+		92F20CA41FEB89CE00FB489A /* PhysWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
+		92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,28 +111,22 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
-				97D9840225BCABE4003BF886 /* TargetActor.cpp */,
-				97D9840325BCABE4003BF886 /* TargetActor.h */,
-				97D983FD25BC4EAB003BF886 /* BallMove.cpp */,
-				97D983FE25BC4EAB003BF886 /* BallMove.h */,
-				97D983F825BC4E9D003BF886 /* BallActor.cpp */,
-				97D983F925BC4E9D003BF886 /* BallActor.h */,
-				97D983F425BAE10B003BF886 /* PhysWorld.cpp */,
-				97D983F525BAE10B003BF886 /* PhysWorld.h */,
-				97D983EF25BABF63003BF886 /* BoxComponent.cpp */,
-				97D983F025BABF63003BF886 /* BoxComponent.h */,
-				97D983EA25B885C0003BF886 /* Collision.cpp */,
-				97D983EB25B885C0003BF886 /* Collision.h */,
-				97D983D925B8799A003BF886 /* Random.cpp */,
-				97D983D825B8799A003BF886 /* Random.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92CF0D1D1F3BB5270086A0F3 /* AudioComponent.cpp */,
 				92CF0D1E1F3BB5270086A0F3 /* AudioComponent.h */,
 				92CF0D1F1F3BB5270086A0F3 /* AudioSystem.cpp */,
 				92CF0D201F3BB5270086A0F3 /* AudioSystem.h */,
+				92F20C9E1FEB899300FB489A /* BallActor.cpp */,
+				92F20C9C1FEB899200FB489A /* BallActor.h */,
+				92F20C971FEB899200FB489A /* BallMove.cpp */,
+				92F20C991FEB899200FB489A /* BallMove.h */,
+				92F20C9B1FEB899200FB489A /* BoxComponent.cpp */,
+				92F20C961FEB899200FB489A /* BoxComponent.h */,
 				92B2F50F1FEA28A1009BF7DF /* CameraComponent.cpp */,
 				92B2F5161FEA28A3009BF7DF /* CameraComponent.h */,
+				92F20C9D1FEB899300FB489A /* Collision.cpp */,
+				92F20C9A1FEB899200FB489A /* Collision.h */,
 				9223C46E1F009428009A94D7 /* Component.cpp */,
 				9223C46F1F009428009A94D7 /* Component.h */,
 				92B2F5081FEA28A0009BF7DF /* FPSActor.cpp */,
@@ -153,6 +144,8 @@
 				92CF0D261F3BB5270086A0F3 /* MeshComponent.h */,
 				9223C48A1F0CA3CE009A94D7 /* MoveComponent.cpp */,
 				9223C48C1F0CA3D4009A94D7 /* MoveComponent.h */,
+				92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */,
+				92F20CA41FEB89CE00FB489A /* PhysWorld.h */,
 				92CF0D271F3BB5270086A0F3 /* PlaneActor.cpp */,
 				92CF0D281F3BB5270086A0F3 /* PlaneActor.h */,
 				92CF0D291F3BB5270086A0F3 /* Renderer.cpp */,
@@ -163,6 +156,8 @@
 				92CF0D2C1F3BB5270086A0F3 /* SoundEvent.h */,
 				9223C4761F009428009A94D7 /* SpriteComponent.cpp */,
 				9223C4771F009428009A94D7 /* SpriteComponent.h */,
+				92F20C951FEB899100FB489A /* TargetActor.cpp */,
+				92F20C981FEB899200FB489A /* TargetActor.h */,
 				9206FDC41F140707005078A2 /* Texture.cpp */,
 				9206FDC51F140707005078A2 /* Texture.h */,
 				92CF0D2D1F3BB5270086A0F3 /* VertexArray.cpp */,
@@ -256,31 +251,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				92CF0D351F3BB5270086A0F3 /* Renderer.cpp in Sources */,
+				92F20C9F1FEB899300FB489A /* TargetActor.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
-				97D983F625BAE10B003BF886 /* PhysWorld.cpp in Sources */,
 				92CF0D331F3BB5270086A0F3 /* MeshComponent.cpp in Sources */,
+				92F20CA61FEB89CE00FB489A /* PhysWorld.cpp in Sources */,
 				92B2F51E1FEA28A3009BF7DF /* FPSCamera.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				92CF0D2F1F3BB5270086A0F3 /* AudioComponent.cpp in Sources */,
 				92CF0D301F3BB5270086A0F3 /* AudioSystem.cpp in Sources */,
 				92B2F5191FEA28A3009BF7DF /* FPSActor.cpp in Sources */,
+				92F20CA21FEB899300FB489A /* Collision.cpp in Sources */,
 				9223C4801F009428009A94D7 /* SpriteComponent.cpp in Sources */,
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
-				97D983E425B8799A003BF886 /* Random.cpp in Sources */,
-				97D983FF25BC4EAB003BF886 /* BallMove.cpp in Sources */,
-				97D983EC25B885C0003BF886 /* Collision.cpp in Sources */,
-				97D983FA25BC4E9D003BF886 /* BallActor.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
-				97D9840425BCABE4003BF886 /* TargetActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
 				92B2F51D1FEA28A3009BF7DF /* CameraComponent.cpp in Sources */,
+				92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */,
+				92F20CA01FEB899300FB489A /* BallMove.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */,
+				92F20CA11FEB899300FB489A /* BoxComponent.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
-				97D983F125BABF63003BF886 /* BoxComponent.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

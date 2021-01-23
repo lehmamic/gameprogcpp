@@ -70,7 +70,7 @@ private:
     Matrix4 mWorldTransform;
     Vector3 mPosition; // Center position of actor
     float mScale; // Uniforms scale of actor (1.0f for 100%)
-    Quaternion mRotation; // Rotation angle (in radians)
+    class Quaternion mRotation; // Rotation angle (in radians)
     bool mRecomputeWorldTransform;
 
     // Components held by this actor

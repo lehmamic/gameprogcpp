@@ -30,25 +30,28 @@ SpriteComponent::~SpriteComponent()
 }
 
 void SpriteComponent::Draw(Shader* shader) {
-    // Scale the quad by the width/height of texture
-    Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(mTexWidth), static_cast<float>(mTexHeight), 1.0);
-    Matrix4 world = scaleMat * mOwner->GetWorldTransform();
-    
-    // Since all sprites use the same shader/vertices,
-    // the game first sets them active before any sprite draws
-    
-    // Set world transform
-    shader->SetMatrixUniform("uWorldTransform", world);
-    
-    // Set current texture
-    mTexture->SetActive();
-    
-    // Draw quad
-    glDrawElements(
-        GL_TRIANGLES,       // Type of polygon / primitiv to draw
-        6,                  // Number of indices
-        GL_UNSIGNED_INT,    // Type of each index
-        nullptr);            // Usually nullptr
+    if (mTexture)
+    {
+        // Scale the quad by the width/height of texture
+        Matrix4 scaleMat = Matrix4::CreateScale(static_cast<float>(mTexWidth), static_cast<float>(mTexHeight), 1.0);
+        Matrix4 world = scaleMat * mOwner->GetWorldTransform();
+        
+        // Since all sprites use the same shader/vertices,
+        // the game first sets them active before any sprite draws
+        
+        // Set world transform
+        shader->SetMatrixUniform("uWorldTransform", world);
+        
+        // Set current texture
+        mTexture->SetActive();
+        
+        // Draw quad
+        glDrawElements(
+            GL_TRIANGLES,       // Type of polygon / primitiv to draw
+            6,                  // Number of indices
+            GL_UNSIGNED_INT,    // Type of each index
+            nullptr);            // Usually nullptr
+    }
 }
 
 void SpriteComponent::SetTexture(Texture *texture) {

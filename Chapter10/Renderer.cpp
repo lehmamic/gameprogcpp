@@ -291,7 +291,7 @@ bool Renderer::LoadShaders()
     
     // Create basic mesh shader
     mMeshShader = new Shader();
-    if (!mMeshShader->Load("Shaders/Pong.vert", "Shaders/Pong.frag"))
+    if (!mMeshShader->Load("Shaders/Phong.vert", "Shaders/Phong.frag"))
     {
         return false;
     }

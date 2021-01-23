@@ -8,7 +8,6 @@
 
 #include "MoveComponent.h"
 #include "Actor.h"
-#include "Math.h"
 
 MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
     :Component(owner, updateOrder)

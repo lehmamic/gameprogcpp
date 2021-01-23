@@ -34,7 +34,7 @@ void BallMove::Update(float deltaTime)
     PhysWorld::CollisionInfo info;
     
     // (Don't collide vs player)
-    if (phys->SegmentCast(ls, info))
+    if (phys->SegmentCast(ls, info) && info.mActor != mPlayer)
     {
         // If we collided, reflect the direction about the normal
         dir = Vector3::Reflect(dir, info.mNormal);
