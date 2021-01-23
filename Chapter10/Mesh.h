@@ -9,6 +9,7 @@
 #ifndef Mesh_hpp
 #define Mesh_hpp
 
+#include "Collision.h"
 #include <vector>
 #include <string>
 
@@ -34,10 +35,16 @@ public:
     // Get object space bounding sphere radius
     float GetRadius() const { return mRadius; }
     
+    // Get object space bounding box
+    const AABB& GetBox() const { return mBox; }
+    
     // Get specular power of mesh
     float GetSpecPower() const { return mSpecPower; }
     
 private:
+    // AABB collision
+    AABB mBox;
+    
     // Texture associated with this mesh
     std::vector<class Texture*> mTextures;
     

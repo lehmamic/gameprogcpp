@@ -29,13 +29,13 @@
 		92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0D2D1F3BB5270086A0F3 /* VertexArray.cpp */; };
 		92D324FB1B697389005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FA1B697389005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
-		97D983E125B8799A003BF886 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983D325B8799A003BF886 /* FollowCamera.cpp */; };
-		97D983E225B8799A003BF886 /* SplineCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983D425B8799A003BF886 /* SplineCamera.cpp */; };
-		97D983E325B8799A003BF886 /* FollowActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983D625B8799A003BF886 /* FollowActor.cpp */; };
 		97D983E425B8799A003BF886 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983D925B8799A003BF886 /* Random.cpp */; };
-		97D983E525B8799A003BF886 /* SplineActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983DB25B8799A003BF886 /* SplineActor.cpp */; };
-		97D983E625B8799A003BF886 /* OrbitCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983DD25B8799A003BF886 /* OrbitCamera.cpp */; };
-		97D983E725B8799A003BF886 /* OrbitActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983DF25B8799A003BF886 /* OrbitActor.cpp */; };
+		97D983EC25B885C0003BF886 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983EA25B885C0003BF886 /* Collision.cpp */; };
+		97D983F125BABF63003BF886 /* BoxComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983EF25BABF63003BF886 /* BoxComponent.cpp */; };
+		97D983F625BAE10B003BF886 /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983F425BAE10B003BF886 /* PhysWorld.cpp */; };
+		97D983FA25BC4E9D003BF886 /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983F825BC4E9D003BF886 /* BallActor.cpp */; };
+		97D983FF25BC4EAB003BF886 /* BallMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D983FD25BC4EAB003BF886 /* BallMove.cpp */; };
+		97D9840425BCABE4003BF886 /* TargetActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97D9840225BCABE4003BF886 /* TargetActor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,20 +82,20 @@
 		92D324FA1B697389005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		97D983D325B8799A003BF886 /* FollowCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FollowCamera.cpp; sourceTree = "<group>"; };
-		97D983D425B8799A003BF886 /* SplineCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplineCamera.cpp; sourceTree = "<group>"; };
-		97D983D525B8799A003BF886 /* FollowCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCamera.h; sourceTree = "<group>"; };
-		97D983D625B8799A003BF886 /* FollowActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FollowActor.cpp; sourceTree = "<group>"; };
-		97D983D725B8799A003BF886 /* OrbitCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrbitCamera.h; sourceTree = "<group>"; };
 		97D983D825B8799A003BF886 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		97D983D925B8799A003BF886 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
-		97D983DA25B8799A003BF886 /* SplineActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplineActor.h; sourceTree = "<group>"; };
-		97D983DB25B8799A003BF886 /* SplineActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplineActor.cpp; sourceTree = "<group>"; };
-		97D983DC25B8799A003BF886 /* SplineCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplineCamera.h; sourceTree = "<group>"; };
-		97D983DD25B8799A003BF886 /* OrbitCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OrbitCamera.cpp; sourceTree = "<group>"; };
-		97D983DE25B8799A003BF886 /* OrbitActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrbitActor.h; sourceTree = "<group>"; };
-		97D983DF25B8799A003BF886 /* OrbitActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OrbitActor.cpp; sourceTree = "<group>"; };
-		97D983E025B8799A003BF886 /* FollowActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowActor.h; sourceTree = "<group>"; };
+		97D983EA25B885C0003BF886 /* Collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
+		97D983EB25B885C0003BF886 /* Collision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
+		97D983EF25BABF63003BF886 /* BoxComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoxComponent.cpp; sourceTree = "<group>"; };
+		97D983F025BABF63003BF886 /* BoxComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxComponent.h; sourceTree = "<group>"; };
+		97D983F425BAE10B003BF886 /* PhysWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
+		97D983F525BAE10B003BF886 /* PhysWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
+		97D983F825BC4E9D003BF886 /* BallActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
+		97D983F925BC4E9D003BF886 /* BallActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallActor.h; sourceTree = "<group>"; };
+		97D983FD25BC4EAB003BF886 /* BallMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BallMove.cpp; sourceTree = "<group>"; };
+		97D983FE25BC4EAB003BF886 /* BallMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallMove.h; sourceTree = "<group>"; };
+		97D9840225BCABE4003BF886 /* TargetActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TargetActor.cpp; sourceTree = "<group>"; };
+		97D9840325BCABE4003BF886 /* TargetActor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetActor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,20 +114,20 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
-				97D983D625B8799A003BF886 /* FollowActor.cpp */,
-				97D983E025B8799A003BF886 /* FollowActor.h */,
-				97D983D325B8799A003BF886 /* FollowCamera.cpp */,
-				97D983D525B8799A003BF886 /* FollowCamera.h */,
-				97D983DF25B8799A003BF886 /* OrbitActor.cpp */,
-				97D983DE25B8799A003BF886 /* OrbitActor.h */,
-				97D983DD25B8799A003BF886 /* OrbitCamera.cpp */,
-				97D983D725B8799A003BF886 /* OrbitCamera.h */,
+				97D9840225BCABE4003BF886 /* TargetActor.cpp */,
+				97D9840325BCABE4003BF886 /* TargetActor.h */,
+				97D983FD25BC4EAB003BF886 /* BallMove.cpp */,
+				97D983FE25BC4EAB003BF886 /* BallMove.h */,
+				97D983F825BC4E9D003BF886 /* BallActor.cpp */,
+				97D983F925BC4E9D003BF886 /* BallActor.h */,
+				97D983F425BAE10B003BF886 /* PhysWorld.cpp */,
+				97D983F525BAE10B003BF886 /* PhysWorld.h */,
+				97D983EF25BABF63003BF886 /* BoxComponent.cpp */,
+				97D983F025BABF63003BF886 /* BoxComponent.h */,
+				97D983EA25B885C0003BF886 /* Collision.cpp */,
+				97D983EB25B885C0003BF886 /* Collision.h */,
 				97D983D925B8799A003BF886 /* Random.cpp */,
 				97D983D825B8799A003BF886 /* Random.h */,
-				97D983DB25B8799A003BF886 /* SplineActor.cpp */,
-				97D983DA25B8799A003BF886 /* SplineActor.h */,
-				97D983D425B8799A003BF886 /* SplineCamera.cpp */,
-				97D983DC25B8799A003BF886 /* SplineCamera.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92CF0D1D1F3BB5270086A0F3 /* AudioComponent.cpp */,
@@ -256,9 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				92CF0D351F3BB5270086A0F3 /* Renderer.cpp in Sources */,
-				97D983E325B8799A003BF886 /* FollowActor.cpp in Sources */,
-				97D983E525B8799A003BF886 /* SplineActor.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
+				97D983F625BAE10B003BF886 /* PhysWorld.cpp in Sources */,
 				92CF0D331F3BB5270086A0F3 /* MeshComponent.cpp in Sources */,
 				92B2F51E1FEA28A3009BF7DF /* FPSCamera.cpp in Sources */,
 				9223C47E1F009428009A94D7 /* Math.cpp in Sources */,
@@ -269,19 +268,20 @@
 				9223C4801F009428009A94D7 /* SpriteComponent.cpp in Sources */,
 				9223C48B1F0CA3CE009A94D7 /* MoveComponent.cpp in Sources */,
 				97D983E425B8799A003BF886 /* Random.cpp in Sources */,
+				97D983FF25BC4EAB003BF886 /* BallMove.cpp in Sources */,
+				97D983EC25B885C0003BF886 /* Collision.cpp in Sources */,
+				97D983FA25BC4E9D003BF886 /* BallActor.cpp in Sources */,
 				9206FDC91F140D40005078A2 /* Shader.cpp in Sources */,
+				97D9840425BCABE4003BF886 /* TargetActor.cpp in Sources */,
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
-				97D983E225B8799A003BF886 /* SplineCamera.cpp in Sources */,
 				92B2F51D1FEA28A3009BF7DF /* CameraComponent.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */,
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
-				97D983E125B8799A003BF886 /* FollowCamera.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
-				97D983E725B8799A003BF886 /* OrbitActor.cpp in Sources */,
+				97D983F125BABF63003BF886 /* BoxComponent.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
-				97D983E625B8799A003BF886 /* OrbitCamera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,9 +30,13 @@ public:
     
     class Renderer* GetRenderer() { return mRenderer; }
     class AudioSystem* GetAudioSystem() { return mAudioSystem; }
+    class PhysWorld* GetPhysWorld() { return mPhysWorld; }
     
     // Game-specific (add/remove asteroid)
-
+    void AddPlane(class PlaneActor* plane);
+    void RemovePlane(class PlaneActor* plane);
+    std::vector<class PlaneActor*>& GetPlanes() { return mPlanes; }
+    
 private:
     // Helper functions for the game loop
     void ProcessInput();
@@ -49,6 +53,7 @@ private:
     
     class Renderer* mRenderer;
     class AudioSystem* mAudioSystem;
+    class PhysWorld* mPhysWorld;
 
     // Number of ticks since start of game
     Uint32 mTicksCount;
@@ -58,16 +63,10 @@ private:
     bool mUpdatingActors;
     
     // Game-specific code
+    std::vector<class PlaneActor*> mPlanes;
     class FPSActor* mFPSActor;
-    class FollowActor* mFollowActor;
-    class OrbitActor* mOrbitActor;
-    class SplineActor* mSplineActor;
-    class Actor* mStartSphere;
-    class Actor* mEndSphere;
     class SpriteComponent* mCrosshair;
     SoundEvent mMusicEvent;
-    SoundEvent mReverbSnap;
-    void ChangeCamera(int mode);
 };
 
 
