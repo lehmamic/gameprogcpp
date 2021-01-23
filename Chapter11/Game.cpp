@@ -14,6 +14,8 @@
 #include "PlaneActor.h"
 #include "TargetActor.h"
 #include "BallActor.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 
 Game::Game()
         :mRenderer(nullptr)
@@ -54,6 +56,13 @@ bool Game::Initialize() {
     
     // Create the physics world
     mPhysWorld = new PhysWorld(this);
+    
+    // Initialize SDL_ttf
+    if (TTF_Init() != 0)
+    {
+        SDL_Log("Failed to initialize SDL_ttf");
+        return false;
+    }
 
     LoadData();
     
