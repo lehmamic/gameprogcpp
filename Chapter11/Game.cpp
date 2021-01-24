@@ -185,6 +185,19 @@ void Game::HandleKeyPress(int key)
             break;
         }
             
+        case '1':
+        {
+            // Load English text
+            LoadText("Assets/English.gptext");
+            break;
+        }
+        case '2':
+        {
+            // Load Russian text
+            LoadText("Assets/Russian.gptext");
+            break;
+        }
+            
         case SDL_BUTTON_LEFT:
         {
             // Fire weapon
