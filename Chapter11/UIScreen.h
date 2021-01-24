@@ -90,12 +90,14 @@ protected:
     
     class Font* mFont;
     class Texture* mTitle;
+    class Texture* mBackground;
     class Texture* mButtonOn;
     class Texture* mButtonOff;
     
     // Configure positions
     Vector2 mTitlePos;
     Vector2 mNextButtonPos;
+    Vector2 mBGPos;
     
     // State
     UIState mState;

@@ -8,6 +8,7 @@
 
 #include "PauseMenu.h"
 #include "Game.h"
+#include "DialogBox.h"
 
 PauseMenu::PauseMenu(Game* game)
     :UIScreen(game)
@@ -21,11 +22,7 @@ PauseMenu::PauseMenu(Game* game)
     });
     
     AddButton("QuitButton", [this]() {
-        /*new DialogBox(mGame, "QuitText",
-            [this]() {
-                mGame->SetState(Game::EQuit);
-        });*/
-        mGame->SetState(Game::EQuit);
+        new DialogBox(mGame, "QuitText", [this]() { mGame->SetState(Game::EQuit); });
     });
 }
 

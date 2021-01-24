@@ -39,6 +39,7 @@
 		97772F1025BCCC08006199D3 /* UIScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F0E25BCCC08006199D3 /* UIScreen.cpp */; };
 		97772F1525BCD346006199D3 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1325BCD346006199D3 /* HUD.cpp */; };
 		97772F1A25BDFA7A006199D3 /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1825BDFA7A006199D3 /* PauseMenu.cpp */; };
+		97772F2425BE092D006199D3 /* DialogBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2225BE092D006199D3 /* DialogBox.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,8 @@
 		97772F1425BCD346006199D3 /* HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
 		97772F1825BDFA7A006199D3 /* PauseMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PauseMenu.cpp; sourceTree = "<group>"; };
 		97772F1925BDFA7A006199D3 /* PauseMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
+		97772F2225BE092D006199D3 /* DialogBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DialogBox.cpp; sourceTree = "<group>"; };
+		97772F2325BE092D006199D3 /* DialogBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogBox.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97772F2225BE092D006199D3 /* DialogBox.cpp */,
+				97772F2325BE092D006199D3 /* DialogBox.h */,
 				97772F1825BDFA7A006199D3 /* PauseMenu.cpp */,
 				97772F1925BDFA7A006199D3 /* PauseMenu.h */,
 				97772F1325BCD346006199D3 /* HUD.cpp */,
@@ -282,6 +287,7 @@
 				92CF0D2F1F3BB5270086A0F3 /* AudioComponent.cpp in Sources */,
 				92CF0D301F3BB5270086A0F3 /* AudioSystem.cpp in Sources */,
 				97772F1025BCCC08006199D3 /* UIScreen.cpp in Sources */,
+				97772F2425BE092D006199D3 /* DialogBox.cpp in Sources */,
 				92B2F5191FEA28A3009BF7DF /* FPSActor.cpp in Sources */,
 				92F20CA21FEB899300FB489A /* Collision.cpp in Sources */,
 				9223C4801F009428009A94D7 /* SpriteComponent.cpp in Sources */,

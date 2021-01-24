@@ -16,10 +16,10 @@
 UIScreen::UIScreen(Game* game)
     :mGame(game)
     ,mTitle(nullptr)
-    // ,mBackground(nullptr)
+    ,mBackground(nullptr)
     ,mTitlePos(0.0f, 300.0f)
     ,mNextButtonPos(0.0f, 200.0f)
-    // ,mBGPos(0.0f, 250.0f)
+    ,mBGPos(0.0f, 250.0f)
     ,mState(EActive)
 {
     // Add to UI Stack
@@ -41,6 +41,7 @@ UIScreen::~UIScreen()
     {
         delete b;
     }
+    
     mButtons.clear();
 }
 
@@ -50,6 +51,12 @@ void UIScreen::Update(float deltaTime)
 
 void UIScreen::Draw(Shader* shader)
 {
+    // Draw background (if exists)
+    if (mBackground)
+    {
+        DrawTexture(shader, mBackground, mBGPos);
+    }
+    
     // Draw title (if exists)
     if (mTitle)
     {
