@@ -40,6 +40,7 @@
 		97772F1525BCD346006199D3 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1325BCD346006199D3 /* HUD.cpp */; };
 		97772F1A25BDFA7A006199D3 /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1825BDFA7A006199D3 /* PauseMenu.cpp */; };
 		97772F2425BE092D006199D3 /* DialogBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2225BE092D006199D3 /* DialogBox.cpp */; };
+		97772F2925BE0D23006199D3 /* TargetComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2725BE0D23006199D3 /* TargetComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,8 @@
 		97772F1925BDFA7A006199D3 /* PauseMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
 		97772F2225BE092D006199D3 /* DialogBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DialogBox.cpp; sourceTree = "<group>"; };
 		97772F2325BE092D006199D3 /* DialogBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogBox.h; sourceTree = "<group>"; };
+		97772F2725BE0D23006199D3 /* TargetComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TargetComponent.cpp; sourceTree = "<group>"; };
+		97772F2825BE0D23006199D3 /* TargetComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97772F2725BE0D23006199D3 /* TargetComponent.cpp */,
+				97772F2825BE0D23006199D3 /* TargetComponent.h */,
 				97772F2225BE092D006199D3 /* DialogBox.cpp */,
 				97772F2325BE092D006199D3 /* DialogBox.h */,
 				97772F1825BDFA7A006199D3 /* PauseMenu.cpp */,
@@ -305,6 +310,7 @@
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
+				97772F2925BE0D23006199D3 /* TargetComponent.cpp in Sources */,
 				97772F1A25BDFA7A006199D3 /* PauseMenu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

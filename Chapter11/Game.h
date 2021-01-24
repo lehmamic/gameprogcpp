@@ -31,6 +31,7 @@ public:
     class Renderer* GetRenderer() { return mRenderer; }
     class AudioSystem* GetAudioSystem() { return mAudioSystem; }
     class PhysWorld* GetPhysWorld() { return mPhysWorld; }
+    class HUD* GetHUD() { return mHUD; }
     
     // Manage UI stack
     const std::vector<class UIScreen*>& GetUIStack() { return mUIStack; }
