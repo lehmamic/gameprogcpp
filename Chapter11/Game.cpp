@@ -20,6 +20,9 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include "Font.h"
+#include <fstream>
+#include <sstream>
+#include <rapidjson/document.h>
 
 Game::Game()
         :mRenderer(nullptr)
@@ -284,6 +287,9 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
+    // Load English text
+    LoadText("Assets/English.gptext");
+    
     // Create actors
     Actor* a = nullptr;
     Quaternion q;
@@ -465,5 +471,62 @@ Font* Game::GetFont(const std::string& fileName)
             font = nullptr;
         }
         return font;
+    }
+}
+
+void Game::LoadText(const std::string& fileName)
+{
+    // Clear the existing map, if already loaded
+    mText.clear();
+    
+    // Try to open the file
+    std::ifstream file(fileName);
+    if (!file.is_open())
+    {
+        SDL_Log("Text file %s not found", fileName.c_str());
+        return;
+    }
+    
+    // Read the entire file to a string stream
+    std::stringstream fileStream;
+    fileStream << file.rdbuf();
+    std::string contents = fileStream.str();
+    
+    // Open this file in rapidJSON
+    rapidjson::StringStream jsonStr(contents.c_str());
+    rapidjson::Document doc;
+    doc.ParseStream(jsonStr);
+    if (!doc.IsObject())
+    {
+        SDL_Log("Text file %s is not valid JSON", fileName.c_str());
+        return;
+    }
+    
+    // Parse the text map
+    const rapidjson::Value& actions = doc["TextMap"];
+    for (rapidjson::Value::ConstMemberIterator itr = actions.MemberBegin();
+        itr != actions.MemberEnd(); ++itr)
+    {
+        if (itr->name.IsString() && itr->value.IsString())
+        {
+            mText.emplace(itr->name.GetString(),
+                itr->value.GetString());
+        }
+    }
+}
+
+const std::string& Game::GetText(const std::string& key)
+{
+    static std::string errorMsg("**KEY NOT FOUND**");
+    
+    // Find this text in the map, if it exists
+    auto iter = mText.find(key);
+    if (iter != mText.end())
+    {
+        return iter->second;
+    }
+    else
+    {
+        return errorMsg;
     }
 }

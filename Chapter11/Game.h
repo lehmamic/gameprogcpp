@@ -51,6 +51,9 @@ public:
     
     class Font* GetFont(const std::string& fileName);
     
+    void LoadText(const std::string& fileName);
+    const std::string& GetText(const std::string& key);
+    
     // Game-specific (add/remove asteroid)
     void AddPlane(class PlaneActor* plane);
     void RemovePlane(class PlaneActor* plane);
@@ -69,6 +72,9 @@ private:
     std::vector<class Actor*> mActors;
     std::vector<class UIScreen*> mUIStack;
     std::unordered_map<std::string, class Font*> mFonts;
+    
+    // Map for text localization
+    std::unordered_map<std::string, std::string> mText;
     
     // Any pending actors
     std::vector<class Actor*> mPendingActors;
