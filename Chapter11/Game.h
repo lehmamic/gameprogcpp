@@ -37,6 +37,8 @@ public:
     const std::vector<class UIScreen*>& GetUIStack() { return mUIStack; }
     void PushUI(class UIScreen* screen);
     
+    class FPSActor* GetPlayer() { return mFPSActor; }
+    
     enum GameState
     {
         EGameplay,

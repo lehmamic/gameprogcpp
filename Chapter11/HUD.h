@@ -26,13 +26,25 @@ public:
     
 protected:
     void UpdateCrosshair(float deltaTime);
+    void UpdateRadar(float deltaTime);
 
     // Textures for crosshair
+    class Texture* mHealthBar;
+    class Texture* mRadar;
     class Texture* mCrosshair;
     class Texture* mCrosshairEnemy;
+    class Texture* mBlipTex;
+    class Texture* mRadarArrow;
     
     // All the target components in the game
     std::vector<class TargetComponent*> mTargetComps;
+    
+    // 2D offsets of blips relative to radar
+    std::vector<Vector2> mBlips;
+    
+    // Adjust range of radar and radius
+    float mRadarRange;
+    float mRadarRadius;
     
     // Whether crosshair targets an enemy
     bool mTargetEnemy;

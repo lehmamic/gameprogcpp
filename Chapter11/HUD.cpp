@@ -13,20 +13,21 @@
 #include "PhysWorld.h"
 #include "Collision.h"
 #include "TargetComponent.h"
+#include "FPSActor.h"
 
 HUD::HUD(Game* game)
     :UIScreen(game)
-    //,mRadarRange(2000.0f)
-    //,mRadarRadius(92.0f)
+    ,mRadarRange(2000.0f)
+    ,mRadarRadius(92.0f)
     ,mTargetEnemy(false)
 {
     Renderer* r = mGame->GetRenderer();
-    //mHealthBar = r->GetTexture("Assets/HealthBar.png");
-    //mRadar = r->GetTexture("Assets/Radar.png");
+    mHealthBar = r->GetTexture("Assets/HealthBar.png");
+    mRadar = r->GetTexture("Assets/Radar.png");
     mCrosshair = r->GetTexture("Assets/Crosshair.png");
     mCrosshairEnemy = r->GetTexture("Assets/CrosshairRed.png");
-    //mBlipTex = r->GetTexture("Assets/Blip.png");
-    //mRadarArrow = r->GetTexture("Assets/RadarArrow.png");
+    mBlipTex = r->GetTexture("Assets/Blip.png");
+    mRadarArrow = r->GetTexture("Assets/RadarArrow.png");
 }
 
 HUD::~HUD()
@@ -38,6 +39,7 @@ void HUD::Update(float deltaTime)
     UIScreen::Update(deltaTime);
     
     UpdateCrosshair(deltaTime);
+    UpdateRadar(deltaTime);
 }
 
 void HUD::Draw(class Shader* shader)
@@ -45,6 +47,19 @@ void HUD::Draw(class Shader* shader)
     // Crosshair
     Texture* cross = mTargetEnemy ? mCrosshairEnemy : mCrosshair;
     DrawTexture(shader, cross, Vector2::Zero, 2.0f);
+    
+    // Radar
+    const Vector2 cRadarPos(-390.0f, 275.0f);
+    DrawTexture(shader, mRadar, cRadarPos, 1.0f);
+    
+    // Blips
+    for (Vector2& blip : mBlips)
+    {
+        DrawTexture(shader, mBlipTex, cRadarPos + blip, 1.0f);
+    }
+    
+    // Radar arrow
+    DrawTexture(shader, mRadarArrow, cRadarPos);
 }
 
 void HUD::AddTargetComponent(TargetComponent* tc)
@@ -81,6 +96,48 @@ void HUD::UpdateCrosshair(float deltaTime)
                 mTargetEnemy = true;
                 break;
             }
+        }
+    }
+}
+
+void HUD::UpdateRadar(float deltaTime)
+{
+    // Clear blip positions from last frame
+    mBlips.clear();
+    
+    // Convert player position to radar coordinates (x forward, z up)
+    Vector3 playerPos = mGame->GetPlayer()->GetPosition();
+    Vector2 playerPos2D(playerPos.y, playerPos.x);
+    
+    // Ditto for player forward
+    Vector3 playerForward = mGame->GetPlayer()->GetForward();
+    Vector2 playerForward2D(playerForward.x, playerForward.y);
+    
+    // Use atan2 to get rotation of radar
+    float angle = Math::Atan2(playerForward2D.y, playerForward2D.x);
+    
+    // Make a 2D rotation matrix
+    Matrix3 rotMat = Matrix3::CreateRotation(angle);
+    
+    // Get position of blips
+    for (auto tc : mTargetComps)
+    {
+        Vector3 targetPos = tc->GetOwner()->GetPosition();
+        Vector2 actorPos2D(targetPos.y, targetPos.x);
+        
+        // Calculate vector between player and target
+        Vector2 playerTotarget = actorPos2D - playerPos2D;
+        
+        // See if within range
+        if (playerTotarget.LengthSq() <= (mRadarRange * mRadarRange))
+        {
+            // Convert playertotarget into an offset from the center of the on-screen
+            Vector2 blipPos = playerTotarget;
+            blipPos *= mRadarRadius / mRadarRange;
+            
+            // Rotate blipPos
+            blipPos = Vector2::Transform(blipPos, rotMat);
+            mBlips.emplace_back(blipPos);
         }
     }
 }
