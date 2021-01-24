@@ -32,6 +32,22 @@ public:
     class AudioSystem* GetAudioSystem() { return mAudioSystem; }
     class PhysWorld* GetPhysWorld() { return mPhysWorld; }
     
+    // Manage UI stack
+    const std::vector<class UIScreen*>& GetUIStack() { return mUIStack; }
+    void PushUI(class UIScreen* screen);
+    
+    enum GameState
+    {
+        EGameplay,
+        EPaused,
+        EQuit
+    };
+    
+    GameState GetState() const { return mGameState; }
+    void SetState(GameState state) { mGameState = state; }
+    
+    class Font* GetFont(const std::string& fileName);
+    
     // Game-specific (add/remove asteroid)
     void AddPlane(class PlaneActor* plane);
     void RemovePlane(class PlaneActor* plane);
@@ -48,13 +64,19 @@ private:
     
     // All the actors in the game
     std::vector<class Actor*> mActors;
+    std::vector<class UIScreen*> mUIStack;
+    std::unordered_map<std::string, class Font*> mFonts;
+    
     // Any pending actors
     std::vector<class Actor*> mPendingActors;
     
     class Renderer* mRenderer;
     class AudioSystem* mAudioSystem;
     class PhysWorld* mPhysWorld;
+    class HUD* mHUD;
 
+    GameState mGameState;
+    
     // Number of ticks since start of game
     Uint32 mTicksCount;
     // Game should continue to run

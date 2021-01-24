@@ -19,6 +19,9 @@ public:
     bool Load(const std::string& fileName);
     void Unload();
     
+    // needed for SDL_TTF which renders to an SDL_Surface and opengl cannot render an SDL_Surface
+    void CreateFromSurface(struct SDL_Surface* surface);
+    
     void SetActive();
     
     int GetWidth() const { return mWidth; }

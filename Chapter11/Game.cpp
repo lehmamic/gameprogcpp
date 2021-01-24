@@ -8,6 +8,9 @@
 #include "AudioSystem.h"
 #include "PhysWorld.h"
 #include "Actor.h"
+#include "UIScreen.h"
+#include "HUD.h"
+#include "PauseMenu.h"
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
 #include "FPSActor.h"
@@ -16,11 +19,13 @@
 #include "BallActor.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include "Font.h"
 
 Game::Game()
         :mRenderer(nullptr)
         ,mAudioSystem(nullptr)
         ,mPhysWorld(nullptr)
+        ,mGameState(EGameplay)
         ,mTicksCount(0)
         ,mIsRunning(true)
         ,mUpdatingActors(false) { }
@@ -72,7 +77,8 @@ bool Game::Initialize() {
 }
 
 void Game::RunLoop() {
-    while (mIsRunning) {
+    while (mGameState != EQuit)
+    {
         ProcessInput();
         UpdateGame();
         GenerateOutput();
@@ -97,19 +103,33 @@ void Game::ProcessInput() {
         switch (event.type)
         {
             case SDL_QUIT:
-                mIsRunning = false;
+                mGameState = EQuit;
                 break;
                 
             // This fires when a key's initially pressed
             case SDL_KEYDOWN:
                 if (!event.key.repeat)
                 {
-                    HandleKeyPress(event.key.keysym.sym);
+                    if (mGameState == EGameplay)
+                    {
+                        HandleKeyPress(event.key.keysym.sym);
+                    }
+                    else if (!mUIStack.empty())
+                    {
+                        mUIStack.back()->HandleKeyPress(event.key.keysym.sym);
+                    }
                 }
                 break;
                 
             case SDL_MOUSEBUTTONDOWN:
-                HandleKeyPress(event.button.button);
+                if (mGameState == EGameplay)
+                {
+                    HandleKeyPress(event.button.button);
+                }
+                else if (!mUIStack.empty())
+                {
+                    mUIStack.back()->HandleKeyPress(event.key.keysym.sym);
+                }
                 break;
                 
             default:
@@ -118,22 +138,33 @@ void Game::ProcessInput() {
     }
 
     const Uint8* keyState = SDL_GetKeyboardState(NULL);
-    if (keyState[SDL_SCANCODE_ESCAPE])
+    if (mGameState == EGameplay)
     {
-        mIsRunning = false;
+        mUpdatingActors = true;
+        for (auto actor : mActors)
+        {
+            if (actor->GetState() == Actor::EActive)
+            {
+                actor->ProcessInput(keyState);
+            }
+        }
+        mUpdatingActors = false;
     }
-    
-    mUpdatingActors = true;
-    for (auto actor : mActors) {
-        actor->ProcessInput(keyState);
+    else if(!mUIStack.empty())
+    {
+        mUIStack.back()->ProcessInput(keyState);
     }
-    mUpdatingActors = false;
 }
 
 void Game::HandleKeyPress(int key)
 {
     switch (key)
     {
+        case SDLK_ESCAPE:
+            // Create pause menu
+            new PauseMenu(this);
+            break;
+            
         case '-':
         {
             // Reduce master volume
@@ -183,40 +214,67 @@ void Game::UpdateGame() {
     // Update tick counts (for next frame)
     mTicksCount = SDL_GetTicks();
 
-    // Update all actors
-    mUpdatingActors = true;
-    for (auto actor : mActors)
+    if (mGameState == EGameplay)
     {
-        actor->Update(deltaTime);
-    }
-    mUpdatingActors = false;
-
-    // Move any pending actors to mActors
-    for (auto pending : mPendingActors)
-    {
-        pending->ComputeWorldTransform();
-        mActors.emplace_back(pending);
-    }
-    mPendingActors.clear();
-
-    // Add any dead actors to a temp vector
-    std::vector<Actor*> deadActors;
-    for (auto actor : mActors)
-    {
-        if (actor->GetState() == Actor::EDead)
+        // Update all actors
+        mUpdatingActors = true;
+        for (auto actor : mActors)
         {
-            deadActors.emplace_back(actor);
+            actor->Update(deltaTime);
         }
-    }
+        mUpdatingActors = false;
 
-    // Delete dead actors (which removes them from mActors
-    for(auto actor : deadActors)
-    {
-        delete actor;
+        // Move any pending actors to mActors
+        for (auto pending : mPendingActors)
+        {
+            pending->ComputeWorldTransform();
+            mActors.emplace_back(pending);
+        }
+        mPendingActors.clear();
+
+        // Add any dead actors to a temp vector
+        std::vector<Actor*> deadActors;
+        for (auto actor : mActors)
+        {
+            if (actor->GetState() == Actor::EDead)
+            {
+                deadActors.emplace_back(actor);
+            }
+        }
+
+        // Delete dead actors (which removes them from mActors
+        for(auto actor : deadActors)
+        {
+            delete actor;
+        }
     }
     
     // Update audio system
     mAudioSystem->Update(deltaTime);
+    
+    // Update UI screens
+    for (auto ui : mUIStack)
+    {
+        if (ui->GetState() == UIScreen::EActive)
+        {
+            ui->Update(deltaTime);
+        }
+    }
+    
+    // Delete any UIScreens that are closed
+    auto iter = mUIStack.begin();
+    while (iter != mUIStack.end())
+    {
+        if ((*iter)->GetState() == UIScreen::EClosing)
+        {
+            delete *iter;
+            iter = mUIStack.erase(iter);
+        }
+        else
+        {
+            ++iter;
+        }
+    }
 }
 
 void Game::GenerateOutput()
@@ -277,21 +335,7 @@ void Game::LoadData()
     dir.mSpecColor = Vector3(0.8f, 0.8f, 0.8f);
 
     // UI elements
-    a = new Actor(this);
-    a->SetPosition(Vector3(-350.0f, -350.0f, 0.0f));
-    SpriteComponent* sc = new SpriteComponent(a);
-    sc->SetTexture(mRenderer->GetTexture("Assets/HealthBar.png"));
-
-    a = new Actor(this);
-    a->SetPosition(Vector3(-390.0f, 275.0f, 0.0f));
-    a->SetScale(0.75f);
-    sc = new SpriteComponent(a);
-    sc->SetTexture(mRenderer->GetTexture("Assets/Radar.png"));
-
-    a = new Actor(this);
-    a->SetScale(2.0f);
-    mCrosshair = new SpriteComponent(a);
-    mCrosshair->SetTexture(mRenderer->GetTexture("Assets/Crosshair.png"));
+    mHUD = new HUD(this);
 
     // Start music
     mMusicEvent = mAudioSystem->PlayEvent("event:/Music");
@@ -313,6 +357,12 @@ void Game::LoadData()
     a->SetPosition(Vector3(1450.0f, -500.0f, 200.0f));
     a = new TargetActor(this);
     a->SetPosition(Vector3(1450.0f, 500.0f, 200.0f));
+    a = new TargetActor(this);
+    a->SetPosition(Vector3(0.0f, -1450.0f, 200.0f));
+    a->SetRotation(Quaternion(Vector3::UnitZ, Math::PiOver2));
+    a = new TargetActor(this);
+    a->SetPosition(Vector3(0.0f, 1450.0f, 200.0f));
+    a->SetRotation(Quaternion(Vector3::UnitZ, -Math::PiOver2));
 }
 
 void Game::UnloadData()
@@ -324,6 +374,13 @@ void Game::UnloadData()
         delete mActors.back();
     }
     
+    // Clear the UI stack
+    while (!mUIStack.empty())
+    {
+        delete mUIStack.back();
+        mUIStack.pop_back();
+    }
+    
     if (mRenderer)
     {
         mRenderer->UnloadData();
@@ -332,7 +389,7 @@ void Game::UnloadData()
 
 void Game::Shutdown() {
     UnloadData();
-    
+    TTF_Quit();
     delete mPhysWorld;
     
     if (mRenderer)
@@ -379,5 +436,34 @@ void Game::RemoveActor(class Actor *actor)
         // Swap to end of vector and pop off (avoid erase copies)
         std::iter_swap(iter, mActors.end() - 1);
         mActors.pop_back();
+    }
+}
+
+void Game::PushUI(UIScreen* screen)
+{
+    mUIStack.emplace_back(screen);
+}
+
+Font* Game::GetFont(const std::string& fileName)
+{
+    auto iter = mFonts.find(fileName);
+    if (iter != mFonts.end())
+    {
+        return iter->second;
+    }
+    else
+    {
+        Font* font = new Font(this);
+        if (font->Load(fileName))
+        {
+            mFonts.emplace(fileName, font);
+        }
+        else
+        {
+            font->Unload();
+            delete font;
+            font = nullptr;
+        }
+        return font;
     }
 }

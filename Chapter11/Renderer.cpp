@@ -14,6 +14,8 @@
 #include "VertexArray.h"
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
+#include "UIScreen.h"
+#include "Game.h"
 #include <GL/glew.h>
 
 Renderer::Renderer(Game* game)
@@ -179,6 +181,12 @@ void Renderer::Draw()
         {
             sprite->Draw(mSpriteShader);
         }
+    }
+    
+    // Draw all ui screens
+    for (auto ui : mGame->GetUIStack())
+    {
+        ui->Draw(mSpriteShader);
     }
     
     // Swap the buffers, which also displays the scene

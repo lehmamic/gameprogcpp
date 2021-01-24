@@ -35,6 +35,10 @@
 		92F20CA21FEB899300FB489A /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9D1FEB899300FB489A /* Collision.cpp */; };
 		92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9E1FEB899300FB489A /* BallActor.cpp */; };
 		92F20CA61FEB89CE00FB489A /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */; };
+		97772F0C25BCC488006199D3 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F0A25BCC488006199D3 /* Font.cpp */; };
+		97772F1025BCCC08006199D3 /* UIScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F0E25BCCC08006199D3 /* UIScreen.cpp */; };
+		97772F1525BCD346006199D3 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1325BCD346006199D3 /* HUD.cpp */; };
+		97772F1A25BDFA7A006199D3 /* PauseMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F1825BDFA7A006199D3 /* PauseMenu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +97,14 @@
 		92F20C9E1FEB899300FB489A /* BallActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
 		92F20CA41FEB89CE00FB489A /* PhysWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
 		92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
+		97772F0A25BCC488006199D3 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		97772F0B25BCC488006199D3 /* Font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		97772F0E25BCCC08006199D3 /* UIScreen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIScreen.cpp; sourceTree = "<group>"; };
+		97772F0F25BCCC08006199D3 /* UIScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScreen.h; sourceTree = "<group>"; };
+		97772F1325BCD346006199D3 /* HUD.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HUD.cpp; sourceTree = "<group>"; };
+		97772F1425BCD346006199D3 /* HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
+		97772F1825BDFA7A006199D3 /* PauseMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PauseMenu.cpp; sourceTree = "<group>"; };
+		97772F1925BDFA7A006199D3 /* PauseMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +123,14 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				97772F1825BDFA7A006199D3 /* PauseMenu.cpp */,
+				97772F1925BDFA7A006199D3 /* PauseMenu.h */,
+				97772F1325BCD346006199D3 /* HUD.cpp */,
+				97772F1425BCD346006199D3 /* HUD.h */,
+				97772F0E25BCCC08006199D3 /* UIScreen.cpp */,
+				97772F0F25BCCC08006199D3 /* UIScreen.h */,
+				97772F0A25BCC488006199D3 /* Font.cpp */,
+				97772F0B25BCC488006199D3 /* Font.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
 				9223C4691F009428009A94D7 /* Actor.h */,
 				92CF0D1D1F3BB5270086A0F3 /* AudioComponent.cpp */,
@@ -250,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97772F0C25BCC488006199D3 /* Font.cpp in Sources */,
 				92CF0D351F3BB5270086A0F3 /* Renderer.cpp in Sources */,
 				92F20C9F1FEB899300FB489A /* TargetActor.cpp in Sources */,
 				9223C47D1F009428009A94D7 /* Main.cpp in Sources */,
@@ -260,6 +281,7 @@
 				9223C4781F009428009A94D7 /* Game.cpp in Sources */,
 				92CF0D2F1F3BB5270086A0F3 /* AudioComponent.cpp in Sources */,
 				92CF0D301F3BB5270086A0F3 /* AudioSystem.cpp in Sources */,
+				97772F1025BCCC08006199D3 /* UIScreen.cpp in Sources */,
 				92B2F5191FEA28A3009BF7DF /* FPSActor.cpp in Sources */,
 				92F20CA21FEB899300FB489A /* Collision.cpp in Sources */,
 				9223C4801F009428009A94D7 /* SpriteComponent.cpp in Sources */,
@@ -268,6 +290,7 @@
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
 				92B2F51D1FEA28A3009BF7DF /* CameraComponent.cpp in Sources */,
 				92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */,
+				97772F1525BCD346006199D3 /* HUD.cpp in Sources */,
 				92F20CA01FEB899300FB489A /* BallMove.cpp in Sources */,
 				9223C4791F009428009A94D7 /* Actor.cpp in Sources */,
 				92CF0D371F3BB5270086A0F3 /* VertexArray.cpp in Sources */,
@@ -276,6 +299,7 @@
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
+				97772F1A25BDFA7A006199D3 /* PauseMenu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
