@@ -128,7 +128,7 @@ void Game::ProcessInput() {
                 }
                 else if (!mUIStack.empty())
                 {
-                    mUIStack.back()->HandleKeyPress(event.key.keysym.sym);
+                    mUIStack.back()->HandleKeyPress(event.button.button);
                 }
                 break;
                 
