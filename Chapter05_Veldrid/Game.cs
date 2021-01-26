@@ -159,8 +159,8 @@ namespace Chapter05
             _pendingActors.Clear();
 
             // Add any dead actors to a temp vector
-            var deadActors = _actors.Where(a => a.State == ActorState.Dead);
-            
+            var deadActors = _actors.Where(a => a.State == ActorState.Dead).ToArray();
+
             // Delete dead actors (which removes them from mActors
             foreach(var actor in deadActors)
             {
