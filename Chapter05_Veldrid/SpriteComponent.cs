@@ -35,16 +35,15 @@ namespace Chapter05
             commandList.SetPipeline(pipeline);
 
             // Scale the quad by the width/height of texture
-            // Matrix4x4 scaleMat = Matrix4x4.CreateScale(_texture.Width, _texture.Height, 1.0f);
-            // Matrix4x4 world = Owner.WorldTransform * scaleMat;
-            Matrix4x4 world = Matrix4x4.Identity;
+            Matrix4x4 scaleMat = Matrix4x4.CreateScale(_texture.Width, _texture.Height, 1.0f);
+            Matrix4x4 world = Owner.WorldTransform * scaleMat;
 
             // Set vertex and index buffers
             commandList.SetVertexBuffer(0, Owner.Game.Renderer.SpriteVertices.VertexBuffer);
             commandList.SetIndexBuffer(Owner.Game.Renderer.SpriteVertices.IndexBuffer, IndexFormat.UInt16);
 
             commandList.SetGraphicsResourceSet(0, Owner.Game.Renderer.ProjectionViewResourceSet);
-            
+
             // Set world transform matrix
             commandList.UpdateBuffer(Owner.Game.Renderer.WorldTransformBuffer, 0, world);
             commandList.SetGraphicsResourceSet(1, _worldTextureResourceSet);
