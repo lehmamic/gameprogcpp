@@ -17,7 +17,7 @@ namespace Chapter05
             _vertexLayout = new VertexLayoutDescription(
                 new VertexElementDescription(nameof(Vertex.Position), VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
                 new VertexElementDescription(nameof(Vertex.Normal), VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
-                new VertexElementDescription(nameof(Vertex.TextureCoordinate), VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3));
+                new VertexElementDescription(nameof(Vertex.TextureCoordinate), VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2));
 
             try
             {
