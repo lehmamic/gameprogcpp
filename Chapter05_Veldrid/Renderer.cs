@@ -62,7 +62,7 @@ namespace Chapter05
             GraphicsDeviceOptions options = new GraphicsDeviceOptions
             {
                 PreferStandardClipSpaceYDirection = true,
-                PreferDepthRangeZeroToOne = true
+                PreferDepthRangeZeroToOne = true,
             };
             GraphicsDevice = VeldridStartup.CreateGraphicsDevice(Window, options, GraphicsBackend.OpenGL);
             

@@ -32,8 +32,7 @@ namespace Chapter05
 
         protected override void ActorInput(InputSnapshot input)
         {
-            var keyEvents = input.KeyEvents.ToDictionary(e => e.Key);
-            if (keyEvents.TryGetValue(Key.Space, out var e) && e.Down)
+            if (input.KeyEvents.Any(e => e.Key == Key.Space && e.Down))
             {
                 // Create a laser and set its position/rotation to mine
                 var laser = new Laser(Game)

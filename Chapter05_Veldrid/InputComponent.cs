@@ -24,17 +24,14 @@ namespace Chapter05
 
         public override void ProcessInput(InputSnapshot input)
         {
-            var keyEvents = input.KeyEvents.ToDictionary(e => e.Key);
-            KeyEvent e;
-
             // Calculate forward speed for MoveComponent
             float forwardSpeed = 0.0f;
-            if (keyEvents.TryGetValue(ForwardKey, out e) && e.Down)
+            if (input.KeyEvents.Any(e => e.Key == ForwardKey && e.Down))
             {
                 forwardSpeed += MaxForwardSpeed;
             }
 
-            if (keyEvents.TryGetValue(BackKey, out e) && e.Down)
+            if (input.KeyEvents.Any(e => e.Key == BackKey && e.Down))
             {
                 forwardSpeed -= MaxForwardSpeed;
             }
@@ -42,12 +39,12 @@ namespace Chapter05
 
             // Calculate angular speed for MoveComponent
             float angularSpeed = 0.0f;
-            if (keyEvents.TryGetValue(ClockwiseKey, out e) && e.Down)
+            if (input.KeyEvents.Any(e => e.Key == ClockwiseKey && e.Down))
             {
                 angularSpeed += MaxAngularSpeed;
             }
 
-            if (keyEvents.TryGetValue(CounterClockwiseKey, out e) && e.Down)
+            if (input.KeyEvents.Any(e => e.Key == CounterClockwiseKey && e.Down))
             {
                 angularSpeed -= MaxAngularSpeed;
             }
