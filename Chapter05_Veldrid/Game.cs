@@ -114,19 +114,19 @@ namespace Chapter05
         {
             // Compute delta time (as in Chapter 1)
             // Wait until 16ms has elapsed since last frame
-            while (_stopwatch.ElapsedTicks < _ticksCount + 16 * TimeSpan.TicksPerSecond)
-            {
-            }
+            //while (_stopwatch.ElapsedTicks < _ticksCount + 16 * TimeSpan.TicksPerSecond)
+            //{
+            //}
 
             // Delta time is the difference in ticks from last frame
             // (converted to seconds)
             float deltaTime = (_stopwatch.ElapsedTicks - _ticksCount) / (1.0f * TimeSpan.TicksPerSecond);
 
             // Clamp maximum delta time value
-            if (deltaTime > 0.05f)
-            {
-                deltaTime = 0.05f;
-            }
+            //if (deltaTime > 0.05f)
+            //{
+            //    deltaTime = 0.05f;
+            //}
 
             // Update tick counts (for next frame)
             _ticksCount = _stopwatch.ElapsedTicks;
