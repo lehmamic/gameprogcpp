@@ -97,12 +97,9 @@ namespace Chapter05
         {
             var input = Renderer.Window.PumpEvents();
 
-            foreach (var keyEvent in input.KeyEvents)
+            if (input.KeyEvents.Any(e => e.Key == Key.Escape && e.Down))
             {
-                if (keyEvent.Key == Key.Escape && keyEvent.Down)
-                {
-                    Renderer.Window.Close();
-                }
+                Renderer.Window.Close();
             }
 
             _updatingActors = true;
