@@ -36,7 +36,7 @@ namespace Chapter05
 
             // Scale the quad by the width/height of texture
             Matrix4x4 scaleMat = Matrix4x4.CreateScale(_texture.Width, _texture.Height, 1.0f);
-            Matrix4x4 world = Owner.WorldTransform * scaleMat;
+            Matrix4x4 world = scaleMat * Owner.WorldTransform;
 
             // Set vertex and index buffers
             commandList.SetVertexBuffer(0, Owner.Game.Renderer.SpriteVertices.VertexBuffer);

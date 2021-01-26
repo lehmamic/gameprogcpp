@@ -35,7 +35,7 @@ namespace Chapter05
             LoadData();
 
             _stopwatch = Stopwatch.StartNew();
-            _ticksCount = _stopwatch.ElapsedTicks;
+            _ticksCount = _stopwatch.ElapsedMilliseconds;
 
             return true;
         }
@@ -114,22 +114,23 @@ namespace Chapter05
         {
             // Compute delta time (as in Chapter 1)
             // Wait until 16ms has elapsed since last frame
-            // while (_stopwatch.ElapsedTicks < _ticksCount + 16 * TimeSpan.TicksPerSecond)
-            // {
-            // }
+            while (_stopwatch.ElapsedMilliseconds < _ticksCount + 16)
+            {
+            }
 
             // Delta time is the difference in ticks from last frame
             // (converted to seconds)
-            float deltaTime = (_stopwatch.ElapsedTicks - _ticksCount) / (1.0f * TimeSpan.TicksPerSecond);
-
+            var elapsedTicks = _stopwatch.ElapsedMilliseconds;
+            float deltaTime = (elapsedTicks - _ticksCount) / 1000f;
+            
             // Clamp maximum delta time value
-            // if (deltaTime > 0.05f)
-            // {
-            //     deltaTime = 0.05f;
-            // }
+            if (deltaTime > 0.05f)
+            {
+                deltaTime = 0.05f;
+            }
 
             // Update tick counts (for next frame)
-            _ticksCount = _stopwatch.ElapsedTicks;
+            _ticksCount = elapsedTicks;
 
             // Update all actors
             _updatingActors = true;
@@ -161,10 +162,10 @@ namespace Chapter05
         private void LoadData()
         {
             // Create player's ship
-            // _ship = new Ship(this)
-            // {
-            //     Rotation = MathUtils.PiOver2,
-            // };
+            _ship = new Ship(this)
+            {
+                Rotation = MathUtils.PiOver2,
+            };
 
             // Create asteroids
             const int numAsteroids = 20;

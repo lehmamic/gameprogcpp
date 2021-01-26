@@ -11,7 +11,7 @@ namespace Chapter05
             Vector2 randPos = Random.GetVector(new Vector2(-512.0f, -384.0f), new Vector2(512.0f, 384.0f));
             Position = randPos;
 
-            Rotation = Random.GetFloat(0.0f, (float)MathUtils.TwoPi);
+            Rotation = Random.GetFloat(0.0f, MathUtils.TwoPi);
 
             // Create a sprite component
             SpriteComponent sprite = new SpriteComponent(this);

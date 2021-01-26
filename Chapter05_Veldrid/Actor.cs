@@ -11,6 +11,9 @@ namespace Chapter05
         private readonly List<Component> _components = new();
 
         private bool _recomputeWorldTransform = true;
+        private Vector2 _position = Vector2.Zero;
+        private float _scale = 1.0f;
+        private float _rotation = 0.0f;
 
         public Actor(Game game)
         {
@@ -23,11 +26,35 @@ namespace Chapter05
 
         public ActorState State { get; set; } = ActorState.Active;
 
-        public Vector2 Position { get; set; } = Vector2.Zero;
+        public Vector2 Position
+        {
+            get => _position;
+            set
+            {
+                _position = value;
+                _recomputeWorldTransform = true;
+            }
+        }
 
-        public float Scale { get; set; } = 1.0f;
+        public float Scale
+        {
+            get => _scale;
+            set
+            {
+                _scale = value;
+                _recomputeWorldTransform = true;
+            }
+        }
 
-        public float Rotation { get; set; } = 0.0f;
+        public float Rotation
+        {
+            get => _rotation;
+            set
+            {
+                _rotation = value;
+                _recomputeWorldTransform = true;
+            }
+        }
 
         public Vector2 Forward => new((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
 
@@ -67,12 +94,9 @@ namespace Chapter05
                 _recomputeWorldTransform = false;
 
                 // Scale, then rotate, then translate
-                // WorldTransform = Matrix4x4.CreateScale(Scale);
-                // WorldTransform *= Matrix4x4.CreateRotationZ(Rotation);
-                // WorldTransform *= Matrix4x4.CreateTranslation(new Vector3(Position.X, Position.Y, 0.0f));
-                WorldTransform = Matrix4x4.CreateTranslation(new Vector3(Position.X, Position.Y, 0.0f));
+                WorldTransform = Matrix4x4.CreateScale(Scale);
                 WorldTransform *= Matrix4x4.CreateRotationZ(Rotation);
-                WorldTransform *= Matrix4x4.CreateScale(Scale);
+                WorldTransform *= Matrix4x4.CreateTranslation(new Vector3(Position.X, Position.Y, 0.0f));
 
                 // Inform components world transform updated
                 foreach (var component in _components)
