@@ -64,7 +64,7 @@ namespace Chapter05
                 PreferStandardClipSpaceYDirection = true,
                 PreferDepthRangeZeroToOne = true
             };
-            GraphicsDevice = VeldridStartup.CreateGraphicsDevice(Window, options);
+            GraphicsDevice = VeldridStartup.CreateGraphicsDevice(Window, options, GraphicsBackend.OpenGL);
             
             // Create command list
             CommandList = GraphicsDevice.ResourceFactory.CreateCommandList();
