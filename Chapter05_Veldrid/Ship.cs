@@ -21,7 +21,7 @@ namespace Chapter05
                 ClockwiseKey = Key.A,
                 CounterClockwiseKey = Key.D,
                 MaxForwardSpeed = 300.0f,
-                MaxAngularSpeed = (float)MathUtils.TwoPi,
+                MaxAngularSpeed = MathUtils.TwoPi,
             };
         }
 
@@ -30,9 +30,9 @@ namespace Chapter05
             _laserCooldown -= deltaTime;
         }
 
-        protected override void ActorInput(InputSnapshot input)
+        protected override void ActorInput(InputState input)
         {
-            if (input.KeyEvents.Any(e => e.Key == Key.Space && e.Down))
+            if (input.Keyboard.GetKeyState(Key.Space) == ButtonState.Pressed && _laserCooldown <= 0.0f)
             {
                 // Create a laser and set its position/rotation to mine
                 var laser = new Laser(Game)

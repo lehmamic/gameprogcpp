@@ -73,7 +73,7 @@ namespace Chapter05
             }
         }
 
-        public void ProcessInput(InputSnapshot input)
+        public void ProcessInput(InputState input)
         {
             if (State == ActorState.Active)
             {
@@ -136,7 +136,7 @@ namespace Chapter05
         {
         }
         
-        protected virtual void ActorInput(InputSnapshot input)
+        protected virtual void ActorInput(InputState input)
         {
         }
 

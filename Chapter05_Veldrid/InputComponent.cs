@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Veldrid;
 
@@ -22,16 +24,16 @@ namespace Chapter05
 
         public Key CounterClockwiseKey { get; set; }
 
-        public override void ProcessInput(InputSnapshot input)
+        public override void ProcessInput(InputState input)
         {
             // Calculate forward speed for MoveComponent
             float forwardSpeed = 0.0f;
-            if (input.KeyEvents.Any(e => e.Key == ForwardKey && e.Down))
+            if (input.Keyboard.GetKeyValue(ForwardKey))
             {
                 forwardSpeed += MaxForwardSpeed;
             }
 
-            if (input.KeyEvents.Any(e => e.Key == BackKey && e.Down))
+            if (input.Keyboard.GetKeyValue(BackKey))
             {
                 forwardSpeed -= MaxForwardSpeed;
             }
@@ -39,12 +41,12 @@ namespace Chapter05
 
             // Calculate angular speed for MoveComponent
             float angularSpeed = 0.0f;
-            if (input.KeyEvents.Any(e => e.Key == ClockwiseKey && e.Down))
+            if (input.Keyboard.GetKeyValue(ClockwiseKey))
             {
                 angularSpeed += MaxAngularSpeed;
             }
 
-            if (input.KeyEvents.Any(e => e.Key == CounterClockwiseKey && e.Down))
+            if (input.Keyboard.GetKeyValue(CounterClockwiseKey))
             {
                 angularSpeed -= MaxAngularSpeed;
             }

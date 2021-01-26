@@ -11,6 +11,7 @@ namespace Chapter05
         private readonly List<Actor> _actors = new();
         private readonly List<Actor> _pendingActors = new();
 
+        private InputSystem _inputSystem;
         private Stopwatch _stopwatch;
         long _ticksCount;
         private bool _updatingActors;
@@ -30,6 +31,12 @@ namespace Chapter05
                 
                 Renderer.Dispose();
                 return false;
+            }
+
+            _inputSystem = new InputSystem();
+            if (!_inputSystem.Initialize())
+            {
+                Console.WriteLine("Failed to initialize input system");
             }
 
             LoadData();
@@ -96,8 +103,10 @@ namespace Chapter05
         private void ProcessInput()
         {
             var input = Renderer.Window.PumpEvents();
+            _inputSystem.Update(input);
 
-            if (input.KeyEvents.Any(e => e.Key == Key.Escape && e.Down))
+            var state = _inputSystem.State;
+            if (state.Keyboard.GetKeyState(Key.Escape) == ButtonState.Pressed)
             {
                 Renderer.Window.Close();
             }
@@ -105,7 +114,7 @@ namespace Chapter05
             _updatingActors = true;
             foreach (var actor in _actors)
             {
-                actor.ProcessInput(input);
+                actor.ProcessInput(state);
             }
             _updatingActors = false;
         }

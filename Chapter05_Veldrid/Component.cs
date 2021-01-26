@@ -22,7 +22,7 @@ namespace Chapter05
         {
         }
 
-        public virtual void ProcessInput(InputSnapshot input)
+        public virtual void ProcessInput(InputState input)
         {
         }
 
