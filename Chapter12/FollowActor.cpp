@@ -7,7 +7,7 @@
 //
 
 #include "FollowActor.h"
-#include "MeshComponent.h"
+#include "SkeletalMeshComponent.h"
 #include "Game.h"
 #include "Renderer.h"
 #include "FollowCamera.h"
@@ -16,8 +16,10 @@
 FollowActor::FollowActor(Game* game)
     :Actor(game)
 {
-    mMeshComp = new MeshComponent(this);
-    mMeshComp->SetMesh(game->GetRenderer()->GetMesh("Assets/RacingCar.gpmesh"));
+    mMeshComp = new SkeletalMeshComponent(this);
+    mMeshComp->SetMesh(game->GetRenderer()->GetMesh("Assets/CatWarrior.gpmesh"));
+    // mMeshComp->SetSkeleton(game->GetSkeleton("Assets/CatWarrior.gpskel"));
+    // mMeshComp->PlayAnimation(game->GetAnimation("Assets/CatActionIdle.gpanim"));
     SetPosition(Vector3(0.0f, 0.0f, -100.0f));
 
     mMoveComp = new MoveComponent(this);

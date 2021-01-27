@@ -11,7 +11,14 @@
 
 class VertexArray {
 public:
-    VertexArray(const float* verts, unsigned int numVerts, const unsigned int* indices, unsigned int numIndices);
+    // Different supported vertex layouts
+    enum Layout
+    {
+        PosNormTex,
+        PosNormSkinTex
+    };
+    
+    VertexArray(const void* verts, unsigned int numVerts, Layout layout, const unsigned int* indices, unsigned int numIndices);
     ~VertexArray();
     
     void SetActive();

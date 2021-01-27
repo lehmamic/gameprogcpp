@@ -39,12 +39,13 @@
 		92F20CA21FEB899300FB489A /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9D1FEB899300FB489A /* Collision.cpp */; };
 		92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9E1FEB899300FB489A /* BallActor.cpp */; };
 		92F20CA61FEB89CE00FB489A /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */; };
+		973B010125C1C4FB00793960 /* SkeletalMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */; };
 		97772F3625BE253A006199D3 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2E25BE253A006199D3 /* CircleComponent.cpp */; };
 		97772F3725BE253A006199D3 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2F25BE253A006199D3 /* Random.cpp */; };
-		97772F3825BE253A006199D3 /* FPSActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F3325BE253A006199D3 /* FPSActor.cpp */; };
-		97772F3925BE253A006199D3 /* FPSCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F3525BE253A006199D3 /* FPSCamera.cpp */; };
 		97772F3F25BE257A006199D3 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F3B25BE257A006199D3 /* FollowCamera.cpp */; };
 		97772F4025BE257A006199D3 /* FollowActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F3C25BE257A006199D3 /* FollowActor.cpp */; };
+		97E1974F25C0B513003F8962 /* BoneTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97E1974D25C0B513003F8962 /* BoneTransform.cpp */; };
+		97E1975325C0B610003F8962 /* Skeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97E1975125C0B610003F8962 /* Skeleton.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,18 +112,21 @@
 		92F20C9E1FEB899300FB489A /* BallActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
 		92F20CA41FEB89CE00FB489A /* PhysWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
 		92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
+		973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkeletalMeshComponent.cpp; sourceTree = "<group>"; };
+		973B010025C1C4FB00793960 /* SkeletalMeshComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkeletalMeshComponent.h; sourceTree = "<group>"; };
 		97772F2E25BE253A006199D3 /* CircleComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircleComponent.cpp; sourceTree = "<group>"; };
 		97772F2F25BE253A006199D3 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
-		97772F3025BE253A006199D3 /* FPSCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSCamera.h; sourceTree = "<group>"; };
-		97772F3125BE253A006199D3 /* FPSActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSActor.h; sourceTree = "<group>"; };
 		97772F3225BE253A006199D3 /* CircleComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleComponent.h; sourceTree = "<group>"; };
-		97772F3325BE253A006199D3 /* FPSActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FPSActor.cpp; sourceTree = "<group>"; };
 		97772F3425BE253A006199D3 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
-		97772F3525BE253A006199D3 /* FPSCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FPSCamera.cpp; sourceTree = "<group>"; };
 		97772F3B25BE257A006199D3 /* FollowCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FollowCamera.cpp; sourceTree = "<group>"; };
 		97772F3C25BE257A006199D3 /* FollowActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FollowActor.cpp; sourceTree = "<group>"; };
 		97772F3D25BE257A006199D3 /* FollowActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowActor.h; sourceTree = "<group>"; };
 		97772F3E25BE257A006199D3 /* FollowCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCamera.h; sourceTree = "<group>"; };
+		97E1974D25C0B513003F8962 /* BoneTransform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoneTransform.cpp; sourceTree = "<group>"; };
+		97E1974E25C0B513003F8962 /* BoneTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoneTransform.h; sourceTree = "<group>"; };
+		97E1975125C0B610003F8962 /* Skeleton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skeleton.cpp; sourceTree = "<group>"; };
+		97E1975225C0B610003F8962 /* Skeleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Skeleton.h; sourceTree = "<group>"; };
+		97E1975725C0BAB3003F8962 /* MatrixPalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatrixPalette.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,16 +145,19 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */,
+				973B010025C1C4FB00793960 /* SkeletalMeshComponent.h */,
+				97E1975725C0BAB3003F8962 /* MatrixPalette.h */,
+				97E1975125C0B610003F8962 /* Skeleton.cpp */,
+				97E1975225C0B610003F8962 /* Skeleton.h */,
+				97E1974D25C0B513003F8962 /* BoneTransform.cpp */,
+				97E1974E25C0B513003F8962 /* BoneTransform.h */,
 				97772F3C25BE257A006199D3 /* FollowActor.cpp */,
 				97772F3D25BE257A006199D3 /* FollowActor.h */,
 				97772F3B25BE257A006199D3 /* FollowCamera.cpp */,
 				97772F3E25BE257A006199D3 /* FollowCamera.h */,
 				97772F2E25BE253A006199D3 /* CircleComponent.cpp */,
 				97772F3225BE253A006199D3 /* CircleComponent.h */,
-				97772F3325BE253A006199D3 /* FPSActor.cpp */,
-				97772F3125BE253A006199D3 /* FPSActor.h */,
-				97772F3525BE253A006199D3 /* FPSCamera.cpp */,
-				97772F3025BE253A006199D3 /* FPSCamera.h */,
 				97772F2F25BE253A006199D3 /* Random.cpp */,
 				97772F3425BE253A006199D3 /* Random.h */,
 				9223C4681F009428009A94D7 /* Actor.cpp */,
@@ -320,6 +327,8 @@
 				92CF0D321F3BB5270086A0F3 /* Mesh.cpp in Sources */,
 				92557D9B1FEC7CD200D046FA /* HUD.cpp in Sources */,
 				92B2F51D1FEA28A3009BF7DF /* CameraComponent.cpp in Sources */,
+				973B010125C1C4FB00793960 /* SkeletalMeshComponent.cpp in Sources */,
+				97E1975325C0B610003F8962 /* Skeleton.cpp in Sources */,
 				97772F3625BE253A006199D3 /* CircleComponent.cpp in Sources */,
 				92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */,
 				92F20CA01FEB899300FB489A /* BallMove.cpp in Sources */,
@@ -330,11 +339,10 @@
 				9223C47C1F009428009A94D7 /* Component.cpp in Sources */,
 				92CF0D361F3BB5270086A0F3 /* SoundEvent.cpp in Sources */,
 				97772F3725BE253A006199D3 /* Random.cpp in Sources */,
-				97772F3825BE253A006199D3 /* FPSActor.cpp in Sources */,
-				97772F3925BE253A006199D3 /* FPSCamera.cpp in Sources */,
 				97772F4025BE257A006199D3 /* FollowActor.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
+				97E1974F25C0B513003F8962 /* BoneTransform.cpp in Sources */,
 				92557D9D1FEC7CD200D046FA /* UIScreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,7 @@
 #include "PhysWorld.h"
 #include "Collision.h"
 #include "TargetComponent.h"
-#include "FPSActor.h"
+#include "FollowActor.h"
 
 HUD::HUD(Game* game)
     :UIScreen(game)
