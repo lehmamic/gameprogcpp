@@ -15,11 +15,12 @@
 
 FollowActor::FollowActor(Game* game)
     :Actor(game)
+    ,mMoving(false)
 {
     mMeshComp = new SkeletalMeshComponent(this);
     mMeshComp->SetMesh(game->GetRenderer()->GetMesh("Assets/CatWarrior.gpmesh"));
-    // mMeshComp->SetSkeleton(game->GetSkeleton("Assets/CatWarrior.gpskel"));
-    // mMeshComp->PlayAnimation(game->GetAnimation("Assets/CatActionIdle.gpanim"));
+    mMeshComp->SetSkeleton(game->GetSkeleton("Assets/CatWarrior.gpskel"));
+    mMeshComp->PlayAnimation(game->GetAnimation("Assets/CatActionIdle.gpanim"));
     SetPosition(Vector3(0.0f, 0.0f, -100.0f));
 
     mMoveComp = new MoveComponent(this);
@@ -31,6 +32,7 @@ void FollowActor::ActorInput(const uint8_t* keys)
 {
     float forwardSpeed = 0.0f;
     float angularSpeed = 0.0f;
+    
     // wasd movement
     if (keys[SDL_SCANCODE_W])
     {

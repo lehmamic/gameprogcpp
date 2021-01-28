@@ -40,6 +40,7 @@
 		92F20CA31FEB899300FB489A /* BallActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20C9E1FEB899300FB489A /* BallActor.cpp */; };
 		92F20CA61FEB89CE00FB489A /* PhysWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */; };
 		973B010125C1C4FB00793960 /* SkeletalMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */; };
+		973B010925C1F95A00793960 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 973B010725C1F95A00793960 /* Animation.cpp */; };
 		97772F3625BE253A006199D3 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2E25BE253A006199D3 /* CircleComponent.cpp */; };
 		97772F3725BE253A006199D3 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F2F25BE253A006199D3 /* Random.cpp */; };
 		97772F3F25BE257A006199D3 /* FollowCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97772F3B25BE257A006199D3 /* FollowCamera.cpp */; };
@@ -112,8 +113,11 @@
 		92F20C9E1FEB899300FB489A /* BallActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallActor.cpp; sourceTree = "<group>"; };
 		92F20CA41FEB89CE00FB489A /* PhysWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysWorld.h; sourceTree = "<group>"; };
 		92F20CA51FEB89CE00FB489A /* PhysWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysWorld.cpp; sourceTree = "<group>"; };
+		972183EE25C2C0D30031FA2A /* Game-mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Game-mac.entitlements"; sourceTree = "<group>"; };
 		973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkeletalMeshComponent.cpp; sourceTree = "<group>"; };
 		973B010025C1C4FB00793960 /* SkeletalMeshComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkeletalMeshComponent.h; sourceTree = "<group>"; };
+		973B010725C1F95A00793960 /* Animation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		973B010825C1F95A00793960 /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		97772F2E25BE253A006199D3 /* CircleComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircleComponent.cpp; sourceTree = "<group>"; };
 		97772F2F25BE253A006199D3 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		97772F3225BE253A006199D3 /* CircleComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleComponent.h; sourceTree = "<group>"; };
@@ -145,6 +149,9 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				972183EE25C2C0D30031FA2A /* Game-mac.entitlements */,
+				973B010725C1F95A00793960 /* Animation.cpp */,
+				973B010825C1F95A00793960 /* Animation.h */,
 				973B00FF25C1C4FB00793960 /* SkeletalMeshComponent.cpp */,
 				973B010025C1C4FB00793960 /* SkeletalMeshComponent.h */,
 				97E1975725C0BAB3003F8962 /* MatrixPalette.h */,
@@ -341,6 +348,7 @@
 				97772F3725BE253A006199D3 /* Random.cpp in Sources */,
 				97772F4025BE257A006199D3 /* FollowActor.cpp in Sources */,
 				9206FDC61F140707005078A2 /* Texture.cpp in Sources */,
+				973B010925C1F95A00793960 /* Animation.cpp in Sources */,
 				92CF0D341F3BB5270086A0F3 /* PlaneActor.cpp in Sources */,
 				97E1974F25C0B513003F8962 /* BoneTransform.cpp in Sources */,
 				92557D9D1FEC7CD200D046FA /* UIScreen.cpp in Sources */,
@@ -448,6 +456,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CODE_SIGN_ENTITLEMENTS = "Game-mac.entitlements";
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (
@@ -485,6 +495,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CODE_SIGN_ENTITLEMENTS = "Game-mac.entitlements";
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (

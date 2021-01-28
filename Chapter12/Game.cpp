@@ -23,6 +23,8 @@
 #include <fstream>
 #include <sstream>
 #include <rapidjson/document.h>
+#include "Skeleton.h"
+#include "Animation.h"
 
 Game::Game()
         :mRenderer(nullptr)
@@ -402,6 +404,25 @@ void Game::UnloadData()
     {
         mRenderer->UnloadData();
     }
+    
+    // Unload fonts
+    for (auto f : mFonts)
+    {
+        f.second->Unload();
+        delete f.second;
+    }
+
+    // Unload skeletons
+    for (auto s : mSkeletons)
+    {
+        delete s.second;
+    }
+
+    // Unload animations
+    for (auto a : mAnims)
+    {
+        delete a.second;
+    }
 }
 
 void Game::Shutdown() {
@@ -539,5 +560,53 @@ const std::string& Game::GetText(const std::string& key)
     else
     {
         return errorMsg;
+    }
+}
+
+Skeleton* Game::GetSkeleton(const std::string& fileName)
+{
+    auto iter = mSkeletons.find(fileName);
+    if (iter != mSkeletons.end())
+    {
+        return iter->second;
+    }
+    else
+    {
+        Skeleton* sk = new Skeleton();
+        if (sk->Load(fileName))
+        {
+            mSkeletons.emplace(fileName, sk);
+        }
+        else
+        {
+            delete sk;
+            sk = nullptr;
+        }
+        
+        return sk;
+    }
+}
+
+Animation* Game::GetAnimation(const std::string& fileName)
+{
+    auto iter = mAnims.find(fileName);
+    if (iter != mAnims.end())
+    {
+        return iter->second;
+    }
+    else
+    {
+        Animation* anim = new Animation();
+        if (anim->Load(fileName))
+        {
+            mAnims.emplace(fileName, anim);
+        }
+        else
+        {
+            delete anim;
+            anim = nullptr;
+        }
+        
+        return anim;
     }
 }

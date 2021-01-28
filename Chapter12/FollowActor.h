@@ -8,6 +8,7 @@
 
 #ifndef FollowActor_hpp
 #define FollowActor_hpp
+
 #include "Actor.h"
 
 class FollowActor : public Actor
@@ -22,7 +23,8 @@ public:
 private:
     class MoveComponent* mMoveComp;
     class FollowCamera* mCameraComp;
-    class MeshComponent* mMeshComp;
+    class SkeletalMeshComponent* mMeshComp;
+    bool mMoving;
 };
 
 #endif /* FollowActor_hpp */

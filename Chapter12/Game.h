@@ -54,6 +54,9 @@ public:
     void LoadText(const std::string& fileName);
     const std::string& GetText(const std::string& key);
     
+    class Skeleton* GetSkeleton(const std::string& fileName);
+    class Animation* GetAnimation(const std::string& fileName);
+    
     // Game-specific (add/remove asteroid)
     void AddPlane(class PlaneActor* plane);
     void RemovePlane(class PlaneActor* plane);
@@ -71,7 +74,15 @@ private:
     // All the actors in the game
     std::vector<class Actor*> mActors;
     std::vector<class UIScreen*> mUIStack;
+
+    // Map for fonts
     std::unordered_map<std::string, class Font*> mFonts;
+    
+    // Map of loaded skeletons
+    std::unordered_map<std::string, class Skeleton*> mSkeletons;
+    
+    // Map of loaded animations
+    std::unordered_map<std::string, class Animation*> mAnims;
     
     // Map for text localization
     std::unordered_map<std::string, std::string> mText;
