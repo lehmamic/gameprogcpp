@@ -50,19 +50,22 @@ void FollowActor::ActorInput(const uint8_t* keys)
     {
         angularSpeed += Math::Pi;
     }
+    
+    // Did we just start moving?
+    if (!mMoving && !Math::NearZero(forwardSpeed))
+    {
+        mMoving = true;
+        mMeshComp->PlayAnimation(GetGame()->GetAnimation("Assets/CatRunSprint.gpanim"), 1.25f);
+    }
+    // Or did we just stop moving?
+    else if (mMoving && Math::NearZero(forwardSpeed))
+    {
+        mMoving = false;
+        mMeshComp->PlayAnimation(GetGame()->GetAnimation("Assets/CatActionIdle.gpanim"));
+    }
 
     mMoveComp->SetForwardSpeed(forwardSpeed);
     mMoveComp->SetAngularSpeed(angularSpeed);
-
-    // Adjust horizontal distance of camera based on speed
-    if (!Math::NearZero(forwardSpeed))
-    {
-        mCameraComp->SetHorzDist(500.0f);
-    }
-    else
-    {
-        mCameraComp->SetHorzDist(350.0f);
-    }
 }
 
 void FollowActor::SetVisible(bool visible)

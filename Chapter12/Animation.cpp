@@ -136,14 +136,23 @@ void Animation::GetGlobalPoseAtTime(std::vector<Matrix4>& outPoses, const Skelet
         outPoses.resize(mNumBones);
     }
     
-    // For now, just compute the pose for every bone at frame 0
-    const int frame = 0;
-    // Set th epose for the root
+    // Figure out the current frame index and next frame
+    // (This assumes inTime is bounded by [0, AnimDuration]
+    size_t frame = static_cast<size_t>(inTime / mFrameDuration);
+    size_t nextFrame = frame + 1;
+    
+    // Calculate fractional value between frame and next frame
+    float pct = inTime / mFrameDuration - frame;
+    
+    // Set the pose for the root
     // Does the root have a track?
     if (mTracks[0].size() > 0)
     {
+        // Interpolate between the current frame's pose and the next frame
+        BoneTransform interp = BoneTransform::Interpolate(mTracks[0][frame], mTracks[0][nextFrame], pct);
+        
         // The global pose for the root is just its local pose
-        outPoses[0] = mTracks[0][frame].ToMatrix();
+        outPoses[0] = interp.ToMatrix();
     }
     else
     {
@@ -159,7 +168,8 @@ void Animation::GetGlobalPoseAtTime(std::vector<Matrix4>& outPoses, const Skelet
         
         if (mTracks[bone].size() > 0)
         {
-            localMat = mTracks[bone][frame].ToMatrix();
+            BoneTransform interp = BoneTransform::Interpolate(mTracks[bone][frame], mTracks[bone][nextFrame], pct);
+            localMat = interp.ToMatrix();
         }
         
         outPoses[bone] = localMat * outPoses[bones[bone].mParent];

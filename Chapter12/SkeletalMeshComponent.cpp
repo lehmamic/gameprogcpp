@@ -53,10 +53,10 @@ void SkeletalMeshComponent::Draw(class Shader* shader)
 
 void SkeletalMeshComponent::Update(float deltaTime)
 {
-    /*
     if (mAnimation && mSkeleton)
     {
         mAnimTime += deltaTime * mAnimPlayRate;
+
         // Wrap around anim time if past duration
         while (mAnimTime > mAnimation->GetDuration())
         {
@@ -65,7 +65,7 @@ void SkeletalMeshComponent::Update(float deltaTime)
 
         // Recompute matrix palette
         ComputeMatrixPalette();
-    }*/
+    }
 }
 
 float SkeletalMeshComponent::PlayAnimation(const Animation* anim, float playRate)
