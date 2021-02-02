@@ -142,16 +142,16 @@ void Renderer::Draw()
     // Enable depth buffer/disable alpha blend
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
-    
+
     // Set the basic mesh shader active
     mMeshShader->SetActive();
-    
+
     // Update view-projection matrix
     mMeshShader->SetMatrixUniform("uViewProj", mView * mProjection);
-    
+
     // Update lighting uniforms
     SetLightUniforms(mMeshShader);
-    
+
     // Draw all meshs
     for (auto mesh : mMeshComps)
     {

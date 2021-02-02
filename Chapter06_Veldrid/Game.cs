@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using Veldrid;
 
 namespace Chapter06
@@ -15,11 +16,8 @@ namespace Chapter06
         private Stopwatch _stopwatch;
         long _ticksCount;
         private bool _updatingActors;
-        private Ship _ship;
 
         public Renderer Renderer { get; private set; }
-
-        public List<Asteroid> Asteroids { get; } = new();
 
         public bool Initialize()
         {
@@ -83,16 +81,6 @@ namespace Chapter06
             {
                 _actors.Remove(actor);
             }
-        }
-
-        public void AddAsteroid(Asteroid asteroid)
-        {
-            Asteroids.Add(asteroid);
-        }
-
-        public void RemoveAsteroid(Asteroid asteroid)
-        {
-            Asteroids.Remove(asteroid);
         }
 
         private void GenerateOutput()
@@ -170,17 +158,56 @@ namespace Chapter06
 
         private void LoadData()
         {
-            // Create player's ship
-            _ship = new Ship(this)
+// Create actors
+            var a = new Actor(this)
             {
-                Rotation = MathUtils.PiOver2,
+                Position = new Vector3(200.0f, 75.0f, 0.0f),
+                Scale = 100.0f,
+            };
+            var q = new Quaternion(Vector3.UnitY, -MathUtils.PiOver2);
+            q = Quaternion.Concatenate(q, new Quaternion(Vector3.UnitZ, (float)Math.PI + (float)Math.PI / 4.0f));
+            a.Rotation = q;
+            var mc = new MeshComponent(a)
+            {
+                Mesh = Renderer.GetMesh("Assets/Cube.gpmesh"),
             };
 
-            // Create asteroids
-            const int numAsteroids = 20;
-            for (int i = 0; i < numAsteroids; i++)
+            a = new Actor(this)
             {
-                var asteroid = new Asteroid(this);
+                Position = new Vector3(200.0f, -75.0f, 0.0f),
+                Scale = 3.0f,
+            };
+            mc = new MeshComponent(a)
+            {
+                Mesh = Renderer.GetMesh("Assets/Sphere.gpmesh"),
+            };
+
+            // Setup floor
+            const float start = -1250.0f;
+            const float size = 250.0f;
+            for (var i = 0; i < 10; i++)
+            {
+                for (var j = 0; j < 10; j++)
+                {
+                    a = new PlaneActor(this) {Position = new Vector3(start + i * size, start + j * size, -100.0f)};
+                }
+            }
+
+            // Left/right walls
+            q = new Quaternion(Vector3.UnitX, MathUtils.PiOver2);
+            for (var i = 0; i < 10; i++)
+            {
+                a = new PlaneActor(this) {Position = new Vector3(start + i * size, start - size, 0.0f), Rotation = q};
+                a = new PlaneActor(this) {Position = new Vector3(start + i * size, -start + size, 0.0f), Rotation = q};
+            }
+
+
+            // Forward/back walls
+            q = Quaternion.Concatenate(q, new Quaternion(Vector3.UnitZ, MathUtils.PiOver2));
+            for (var i = 0; i < 10; i++)
+            {
+                a = new PlaneActor(this) {Position = new Vector3(start - size, start + i * size, 0.0f), Rotation = q};
+                a = new PlaneActor(this) {Position = new Vector3(-start + size, start + i * size, 0.0f), Rotation = q};
             }
         }
 

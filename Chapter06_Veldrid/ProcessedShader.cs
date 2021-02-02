@@ -12,7 +12,7 @@ namespace Chapter06
 
         public ShaderSetDescription ShaderSet { get; private set; }
 
-        public bool Load(GraphicsDevice graphicsDevice, string vertexShaderFileName, string fragmentShaderFileName)
+        public virtual bool Load(GraphicsDevice graphicsDevice, string vertexShaderFileName, string fragmentShaderFileName)
         {
             _vertexLayout = new VertexLayoutDescription(
                 new VertexElementDescription(nameof(Vertex.Position), VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
@@ -28,38 +28,41 @@ namespace Chapter06
                 ShaderDescription fragmentShaderDesc = new ShaderDescription(ShaderStages.Fragment, fragmentShaderBytes, "main");
 
                 _shaders = graphicsDevice.ResourceFactory.CreateFromSpirv(vertexShaderDesc, fragmentShaderDesc);
+
+                ShaderSet = new ShaderSetDescription(new[] {_vertexLayout}, _shaders);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
 
+                Dispose();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
                 if (_shaders is not null)
                 {
                     foreach (var shader in _shaders)
                     {
                         shader.Dispose();
                     }
+                
+                    _shaders = null;
                 }
-
-                return false;
             }
-
-            ShaderSet = new ShaderSetDescription(new[] {_vertexLayout}, _shaders);
-
-            return true;
         }
 
         public void Dispose()
         {
-            if (_shaders is not null)
-            {
-                foreach (var shader in _shaders)
-                {
-                    shader.Dispose();
-                }
-
-                _shaders = null;
-            }
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

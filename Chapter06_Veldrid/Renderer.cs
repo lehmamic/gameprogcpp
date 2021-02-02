@@ -10,11 +10,22 @@ namespace Chapter06
     public class Renderer :IDisposable
     {
         private readonly Game _game;
-        private readonly Dictionary<string, ProcessedTexture> _textures = new();
-        private readonly List<SpriteComponent> _sprites = new();
 
-        private ProcessedShader _spriteShader;
-        private Pipeline _spritePipeline;
+        // Map of textures loaded
+        private readonly Dictionary<string, ProcessedTexture> _textures = new();
+
+        // Map of meshes loaded
+        private readonly Dictionary<string, Mesh> _meshes = new();
+
+        // All the sprite components drawn
+        private readonly List<SpriteComponent> _spriteComponents = new();
+        
+        // All mesh components drawn
+        private readonly List<MeshComponent> _meshComponents = new();
+
+        // View/projection for 3D shaders
+        private Matrix4x4 _view;
+        private Matrix4x4 _projection;
 
         public Renderer(Game game)
         {
@@ -29,15 +40,9 @@ namespace Chapter06
 
         public VertexArray SpriteVertices { get; private set; }
 
-        public ResourceLayout ProjectionViewLayout { get; private set; }
+        public SpriteShader SpriteShader { get; private set; }
 
-        public ResourceSet ProjectionViewResourceSet { get; private set; }
-
-        public DeviceBuffer ProjectionViewBuffer { get; private set; }
-
-        public ResourceLayout WorldTextureLayout { get; private set; }
-
-        public DeviceBuffer WorldTransformBuffer { get; private set; }
+        public MeshShader MeshShader { get; private set; }
 
         public bool Initialize(int screenWidth, int screenHeight)
         {
@@ -59,11 +64,13 @@ namespace Chapter06
             }
             
             // Create the graphic device
-            GraphicsDeviceOptions options = new GraphicsDeviceOptions
-            {
-                PreferStandardClipSpaceYDirection = true,
-                PreferDepthRangeZeroToOne = true,
-            };
+            var options = new GraphicsDeviceOptions(
+                debug: true,
+                swapchainDepthFormat: PixelFormat.R16_UNorm,
+                syncToVerticalBlank: true,
+                resourceBindingModel: ResourceBindingModel.Improved,
+                preferDepthRangeZeroToOne: true,
+                preferStandardClipSpaceYDirection: true);
             GraphicsDevice = VeldridStartup.CreateGraphicsDevice(Window, options, GraphicsBackend.OpenGL);
             
             // Create command list
@@ -89,12 +96,24 @@ namespace Chapter06
             CommandList.SetFullViewports();
 
             // Clear the color buffer
-            CommandList.ClearColorTarget(0, new RgbaFloat(0.86f, 0.86f, 0.86f, 1.0f));
+            CommandList.ClearColorTarget(0, new RgbaFloat(0.0f, 0.0f, 0.0f, 1.0f));
+
+            // Draw mesh components
+            CommandList.SetPipeline(MeshShader.Pipeline);
+            CommandList.SetGraphicsResourceSet(0, MeshShader.ProjectionViewResourceSet);
+            CommandList.UpdateBuffer(MeshShader.ProjectionViewBuffer, 0, _projection * _view);
+
+            foreach (var mesh in _meshComponents)
+            {
+                mesh.Draw(MeshShader);
+            }
 
             // Draw all sprite components
-            foreach (var sprite in _sprites)
+            CommandList.SetPipeline(SpriteShader.Pipeline);
+            CommandList.SetGraphicsResourceSet(0, SpriteShader.ProjectionViewResourceSet);
+            foreach (var sprite in _spriteComponents)
             {
-                sprite.Draw(_spritePipeline);
+                sprite.Draw(SpriteShader);
             }
 
             CommandList.End();
@@ -108,20 +127,30 @@ namespace Chapter06
         {
             // We add it already ordered to the list
             var index = 0;
-            for (; index < _sprites.Count; index++)
+            for (; index < _spriteComponents.Count; index++)
             {
-                if (sprite.DrawOrder < _sprites[index].DrawOrder)
+                if (sprite.DrawOrder < _spriteComponents[index].DrawOrder)
                 {
                     break;
                 }
             }
             
-            _sprites.Insert(index, sprite);
+            _spriteComponents.Insert(index, sprite);
         }
 
         public void RemoveSprite(SpriteComponent sprite)
         {
-            _sprites.Remove(sprite);
+            _spriteComponents.Remove(sprite);
+        }
+        
+        public void AddMeshComponent(MeshComponent mesh)
+        {
+            _meshComponents.Add(mesh);
+        }
+
+        public void RemoveMeshComponent(MeshComponent mesh)
+        {
+            _meshComponents.Remove(mesh);
         }
 
         public ProcessedTexture GetTexture(string fileName)
@@ -144,6 +173,27 @@ namespace Chapter06
 
             return texture;
         }
+        
+        public Mesh GetMesh(string fileName)
+        {
+            if (_meshes.TryGetValue(fileName, out var mesh))
+            {
+                return mesh;
+            }
+
+            mesh = new Mesh();
+            if (mesh.Load(fileName, this))
+            {
+                _meshes.Add(fileName, mesh);
+            }
+            else
+            {
+                mesh.Dispose();
+                mesh = null;
+            }
+
+            return mesh;
+        }
 
         public void UnloadData()
         {
@@ -152,6 +202,14 @@ namespace Chapter06
             {
                 texture.Dispose();
             }
+            _textures.Clear();
+
+            // Destroy meshes
+            foreach (var mesh in _meshes.Values)
+            {
+                mesh.Dispose();
+            }
+            _meshes.Clear();
         }
 
         public void Dispose()
@@ -160,12 +218,7 @@ namespace Chapter06
 
             CommandList?.Dispose();
             SpriteVertices?.Dispose();
-            ProjectionViewLayout?.Dispose();
-            ProjectionViewBuffer?.Dispose();
-            ProjectionViewResourceSet?.Dispose();
-            WorldTextureLayout?.Dispose();
-            WorldTransformBuffer?.Dispose();
-            _spritePipeline?.Dispose();
+            SpriteShader?.Dispose();
             GraphicsDevice?.Dispose();
         }
         
@@ -190,50 +243,34 @@ namespace Chapter06
 
         private bool LoadShaders()
         {
-            _spriteShader = new ProcessedShader();
-            if (!_spriteShader.Load(GraphicsDevice, "Shaders/Sprite.vert", "Shaders/Sprite.frag"))
+            // Create Sprite Shader and Pipeline
+            SpriteShader = new SpriteShader();
+            if (!SpriteShader.Load(GraphicsDevice, "Shaders/Sprite.vert", "Shaders/Sprite.frag"))
             {
                 return false;
             }
 
-            ProjectionViewLayout = GraphicsDevice.ResourceFactory.CreateResourceLayout(
-                new ResourceLayoutDescription(
-                    new ResourceLayoutElementDescription("ViewProjectionBuffer", ResourceKind.UniformBuffer, ShaderStages.Vertex)));
-            ProjectionViewBuffer = GraphicsDevice.ResourceFactory.CreateBuffer(
-                new BufferDescription(64, BufferUsage.UniformBuffer));
-            ProjectionViewResourceSet = GraphicsDevice.ResourceFactory.CreateResourceSet(
-                new ResourceSetDescription(
-                    ProjectionViewLayout, 
-                    ProjectionViewBuffer));
+            // Set the view-projection matrix
+            CommandList.Begin();
+            Matrix4x4 viewProj = MathUtils.CreateSimpleViewProj(Window.Width, Window.Height);
+            // Matrix4x4 viewProj = Matrix4x4.CreateOrthographic(Window.Width, Window.Height, -1.0f, 2.0f);
+            CommandList.UpdateBuffer(SpriteShader.ProjectionViewBuffer, 0, viewProj);
+            CommandList.End();
 
-            WorldTextureLayout = GraphicsDevice.ResourceFactory.CreateResourceLayout(
-                new ResourceLayoutDescription(
-                    new ResourceLayoutElementDescription("WorldTransformBuffer", ResourceKind.UniformBuffer, ShaderStages.Vertex),
-                    new ResourceLayoutElementDescription("SurfaceTexture", ResourceKind.TextureReadOnly, ShaderStages.Fragment),
-                    new ResourceLayoutElementDescription("SurfaceSampler", ResourceKind.Sampler, ShaderStages.Fragment)));
-            WorldTransformBuffer = GraphicsDevice.ResourceFactory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer));
-
-            GraphicsPipelineDescription pipelineDescription = new GraphicsPipelineDescription
+            // Create Mesh Shader and Pipeline
+            MeshShader = new MeshShader();
+            if (!MeshShader.Load(GraphicsDevice, "Shaders/BasicMesh.vert", "Shaders/BasicMesh.frag"))
             {
-                BlendState = BlendStateDescription.SingleAlphaBlend,
-                DepthStencilState = DepthStencilStateDescription.Disabled,
-                RasterizerState = RasterizerStateDescription.CullNone,
-                PrimitiveTopology = PrimitiveTopology.TriangleStrip,
-                ResourceLayouts = new [] { ProjectionViewLayout, WorldTextureLayout },
-                ShaderSet = _spriteShader.ShaderSet,
-                Outputs = GraphicsDevice.SwapchainFramebuffer.OutputDescription
-            };
-
-            _spritePipeline = GraphicsDevice.ResourceFactory.CreateGraphicsPipeline(pipelineDescription);
+                return false;
+            }
 
             // Set the view-projection matrix
             CommandList.Begin();
-
-            Matrix4x4 viewProj = MathUtils.CreateSimpleViewProj(Window.Width, Window.Height);
-            // Matrix4x4 viewProj = Matrix4x4.CreateOrthographic(Window.Width, Window.Height, -1.0f, 2.0f);
-            CommandList.UpdateBuffer(ProjectionViewBuffer, 0, viewProj);
-
+            _view = Matrix4x4.CreateLookAt(Vector3.Zero, Vector3.UnitX, Vector3.UnitZ);
+            _projection = Matrix4x4.CreatePerspectiveFieldOfView(MathUtils.ToRadians(70.0f), (float)Window.Width / Window.Height, 25.0f, 10000.0f);
+            CommandList.UpdateBuffer(MeshShader.ProjectionViewBuffer, 0, _projection * _view);
             CommandList.End();
+
             GraphicsDevice.SubmitCommands(CommandList);
 
             return true;

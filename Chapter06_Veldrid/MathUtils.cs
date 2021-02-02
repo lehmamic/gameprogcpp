@@ -20,6 +20,12 @@ namespace Chapter06
             }
         }
 
+        public static float ToRadians (float degrees)
+        {
+            float radians = ((float)Math.PI / 180) * degrees;
+            return radians;
+        }
+
         public static Matrix4x4 CreateSimpleViewProj(float width, float height)
         {
             return new(

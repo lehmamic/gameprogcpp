@@ -18,36 +18,23 @@ namespace Chapter06
         {
             if (!AngularSpeed.NearZero())
             {
-                float rotation = Owner.Rotation;
-                rotation += AngularSpeed * deltaTime;
+                Quaternion rotation = Owner.Rotation;
+                float angle = AngularSpeed * deltaTime;
+
+                // Create quaternion for incremental rotation
+                // (Rotate about up axis)
+                Quaternion inc = new Quaternion(Vector3.UnitZ, angle);
+                rotation = Quaternion.Concatenate(rotation, inc);
+
+                // Concatenate old and new quaternion
                 Owner.Rotation = rotation;
             }
 
+            // Updating position based on forward speed stays the same
             if (!ForwardSpeed.NearZero())
             {
-                Vector2 position = Owner.Position;
+                Vector3 position = Owner.Position;
                 position += Owner.Forward * ForwardSpeed * deltaTime;
-
-                // Screen wrapping (for asteroids)
-                var halfScreenWidth = Owner.Game.Renderer.Window.Width / 2;
-                if (position.X < -halfScreenWidth)
-                {
-                    position.X = halfScreenWidth - 2;
-                }
-                else if (position.X > halfScreenWidth)
-                {
-                    position.X = -(halfScreenWidth - 2);
-                }
-
-                var halfScreenHeight = Owner.Game.Renderer.Window.Height / 2;
-                if (position.Y < -halfScreenHeight)
-                {
-                    position.Y = halfScreenHeight - 2;
-                }
-                else if (position.Y > halfScreenHeight)
-                {
-                    position.Y = -(halfScreenHeight - 2);
-                }
 
                 Owner.Position = position;
             }

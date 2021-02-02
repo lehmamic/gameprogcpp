@@ -11,12 +11,12 @@ namespace Chapter06
         
         public float Radius { get; set; }
 
-        public Vector2 Center => Owner.Position;
+        public Vector3 Center => Owner.Position;
 
         public static bool Intersect(CircleComponent a, CircleComponent b)
         {
             // Calculate distance squared
-            Vector2 diff = a.Center - b.Center;
+            Vector3 diff = a.Center - b.Center;
             float distSq = diff.LengthSquared();
 
             // Calculate sum of radii squared

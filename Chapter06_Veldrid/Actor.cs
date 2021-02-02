@@ -11,9 +11,9 @@ namespace Chapter06
         private readonly List<Component> _components = new();
 
         private bool _recomputeWorldTransform = true;
-        private Vector2 _position = Vector2.Zero;
+        private Vector3 _position = Vector3.Zero;
         private float _scale = 1.0f;
-        private float _rotation = 0.0f;
+        private Quaternion _rotation = Quaternion.Identity;
 
         public Actor(Game game)
         {
@@ -26,7 +26,7 @@ namespace Chapter06
 
         public ActorState State { get; set; } = ActorState.Active;
 
-        public Vector2 Position
+        public Vector3 Position
         {
             get => _position;
             set
@@ -46,7 +46,7 @@ namespace Chapter06
             }
         }
 
-        public float Rotation
+        public Quaternion Rotation
         {
             get => _rotation;
             set
@@ -56,7 +56,7 @@ namespace Chapter06
             }
         }
 
-        public Vector2 Forward => new((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
+        public Vector3 Forward => Vector3.Transform(Vector3.UnitX, _rotation);
 
         public Matrix4x4 WorldTransform { get; private set; }
 
@@ -95,8 +95,8 @@ namespace Chapter06
 
                 // Scale, then rotate, then translate
                 WorldTransform = Matrix4x4.CreateScale(Scale);
-                WorldTransform *= Matrix4x4.CreateRotationZ(Rotation);
-                WorldTransform *= Matrix4x4.CreateTranslation(new Vector3(Position.X, Position.Y, 0.0f));
+                WorldTransform *= Matrix4x4.CreateFromQuaternion(Rotation);
+                WorldTransform *= Matrix4x4.CreateTranslation(Position);
 
                 // Inform components world transform updated
                 foreach (var component in _components)

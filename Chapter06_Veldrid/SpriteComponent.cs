@@ -22,17 +22,15 @@ namespace Chapter06
             _texture = texture;
             _worldTextureResourceSet = Owner.Game.Renderer.GraphicsDevice.ResourceFactory.CreateResourceSet(
                 new ResourceSetDescription(
-                    Owner.Game.Renderer.WorldTextureLayout,
-                    Owner.Game.Renderer.WorldTransformBuffer,
+                    Owner.Game.Renderer.SpriteShader.WorldTextureLayout,
+                    Owner.Game.Renderer.SpriteShader.WorldTransformBuffer,
                     texture.TextureView,
                     Owner.Game.Renderer.GraphicsDevice.Aniso4xSampler));
         }
 
-        public void Draw(Pipeline pipeline)
+        public void Draw(SpriteShader shader)
         {
             var commandList = Owner.Game.Renderer.CommandList;
-
-            commandList.SetPipeline(pipeline);
 
             // Scale the quad by the width/height of texture
             Matrix4x4 scaleMat = Matrix4x4.CreateScale(_texture.Width, _texture.Height, 1.0f);
@@ -42,10 +40,8 @@ namespace Chapter06
             commandList.SetVertexBuffer(0, Owner.Game.Renderer.SpriteVertices.VertexBuffer);
             commandList.SetIndexBuffer(Owner.Game.Renderer.SpriteVertices.IndexBuffer, IndexFormat.UInt16);
 
-            commandList.SetGraphicsResourceSet(0, Owner.Game.Renderer.ProjectionViewResourceSet);
-
             // Set world transform matrix
-            commandList.UpdateBuffer(Owner.Game.Renderer.WorldTransformBuffer, 0, world);
+            commandList.UpdateBuffer(shader.WorldTransformBuffer, 0, world);
             commandList.SetGraphicsResourceSet(1, _worldTextureResourceSet);
 
             commandList.DrawIndexed(
